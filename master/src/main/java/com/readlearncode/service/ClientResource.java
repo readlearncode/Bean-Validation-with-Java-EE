@@ -3,9 +3,11 @@ package com.readlearncode.service;
 import com.readlearncode.model.Client;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.Startup;
 import javax.ejb.Stateless;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Source code github.com/readlearncode
@@ -13,8 +15,10 @@ import java.util.List;
  * @author Alex Theedom www.readlearncode.com
  * @version 1.0
  */
-@Stateless
+@Stateless @Startup
 public class ClientResource {
+
+    private AtomicLong nextId;
 
     private List<Client> all;
 
@@ -24,9 +28,7 @@ public class ClientResource {
         all.add(new Client(0L, 1, "Alex Theedom", "alex.theedom@gmail.com", true));
         all.add(new Client(1L, 1, "John Smith", "email", true));
         all.add(new Client(2L, 1, "TEST", "alex.theedom@gmail.com", true));
-
-        // 	public Client(int version, String name, String email, boolean acceptTOC) {
-
+        nextId = new AtomicLong(3);
     }
 
     public List<Client> findAll() {
@@ -41,10 +43,16 @@ public class ClientResource {
     }
 
     public void add(Client client) {
+        client.setId(nextId.getAndIncrement());
         all.add(client);
+    }
+
+    public void merge(Client client) {
+        // no action required as the reference has been modified directly
     }
 
     public void delete(Client client) {
         all.remove(client);
     }
+
 }

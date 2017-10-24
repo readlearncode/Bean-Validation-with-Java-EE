@@ -18,7 +18,6 @@ public class ClientService {
     @EJB
     private ClientResource clientResource;
 
-
     public void remove(Client client) {
         clientResource.delete(client);
     }
@@ -27,11 +26,16 @@ public class ClientService {
         clientResource.add(client);
     }
 
-    public Client find( Long id) {
+    public void merge(Client client) {
+        clientResource.merge(client);
+    }
+
+    public Client find(Long id) {
         return clientResource.findById(id);
     }
 
     public List<Client> getAll() {
-            return clientResource.findAll();
+        return clientResource.findAll();
     }
+
 }
