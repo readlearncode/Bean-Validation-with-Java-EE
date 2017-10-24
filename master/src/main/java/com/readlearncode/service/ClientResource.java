@@ -5,6 +5,9 @@ import com.readlearncode.model.Client;
 import javax.annotation.PostConstruct;
 import javax.ejb.Startup;
 import javax.ejb.Stateless;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
@@ -15,7 +18,8 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author Alex Theedom www.readlearncode.com
  * @version 1.0
  */
-@Stateless @Startup
+@Stateless
+@Startup
 public class ClientResource {
 
     private AtomicLong nextId;
@@ -24,10 +28,15 @@ public class ClientResource {
 
     @PostConstruct
     public void init() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         all = new ArrayList<>();
-        all.add(new Client(0L, 1, "Alex Theedom", "alex.theedom@gmail.com", true));
-        all.add(new Client(1L, 1, "John Smith", "email", true));
-        all.add(new Client(2L, 1, "TEST", "alex.theedom@gmail.com", true));
+        try {
+            all.add(new Client(0L, 1, "Alex Theedom", dateFormat.parse("1978/12/2"), "alex.theedom@gmail.com", true));
+            all.add(new Client(1L, 1, "John Smith", dateFormat.parse("1965/10/12"), "email", true));
+            all.add(new Client(2L, 1, "TEST", dateFormat.parse("1984/1/5"), "alex.theedom@gmail.com", true));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         nextId = new AtomicLong(3);
     }
 
