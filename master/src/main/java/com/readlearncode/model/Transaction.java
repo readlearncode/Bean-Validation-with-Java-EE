@@ -1,5 +1,6 @@
 package com.readlearncode.model;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Objects;
 
@@ -16,10 +17,20 @@ public class Transaction {
     }
 
     private Integer id;
+
+    @NotNull
     private TYPE type;
+
+    @NotNull
     private Stock stock;
+
+    @NotNull
     private Integer quantity;
+
+    @NotNull
     private Double priceLimit;
+
+    @NotNull
     private Date exerciseDate;
 
     public Transaction() {
