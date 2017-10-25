@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{portfolioBean.clientId}'/>
+		<f:viewParam name="page" value='#{portfolioBean.page}'/>
+		<f:event type="preRenderView" listener='#{portfolioBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Portfolio entities"/>
+
+	<ui:define name="header">
+		Portfolio
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Portfolio entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{portfolioBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{portfolioBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+
+			<h:dataTable id="portfolioBeanPageItems" styleClass="data-table" value="#{portfolioBean.pageItems}" var="_item">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Stock"/>
+					</f:facet>
+					<h:link outcome="/transaction/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="_itemName" value="#{_item.stock}"/>
+					</h:link>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Quantity"/>
+					</f:facet>
+					<h:link outcome="/transaction/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="_itemId" value="#{_item.quantity}"/>
+					</h:link>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Price Limit"/>
+					</f:facet>
+					<h:link outcome="/transaction/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="_itemCode" value="#{_item.priceLimit}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{portfolioBean}'/>
+			</ui:include>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
