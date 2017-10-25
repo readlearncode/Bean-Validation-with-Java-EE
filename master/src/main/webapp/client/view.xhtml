@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/resources/scaffold/pageTemplate.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value='#{clientBean.id}'/>
+        <f:event type="preRenderView" listener='#{clientBean.retrieve}'/>
+    </f:metadata>
+
+    <ui:param name="pageTitle" value="View Client"/>
+
+    <ui:define name="header">
+        Client
+    </ui:define>
+
+    <ui:define name="subheader">
+        View existing Client
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <h:panelGrid columnClasses="label,component,required" columns="3">
+            <h:outputLabel for="clientBeanClientName" value="Name:"/>
+            <h:outputText id="clientBeanClientName" value="#{clientBean.client.name}"/>
+            <h:outputText/>
+            <h:outputLabel for="clientBeanClientDob" value="Date of Birth:"/>
+            <h:outputText id="clientBeanClientDob" value="#{clientBean.client.dob}">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </h:outputText>
+            <h:outputText/>
+            <h:outputLabel for="clientBeanClientEmail" value="Email:"/>
+            <h:outputText id="clientBeanClientEmail" value="#{clientBean.client.email}"/>
+            <h:outputText/>
+            <h:outputLabel value="Accept TOS:"/>
+            <h:outputText styleClass="#{clientBean.client.acceptTOS ? 'boolean-true' : 'boolean-false'}" value=""/>
+            <h:outputText/>
+        </h:panelGrid>
+
+
+        <!--<h:link outcome="/transaction/view" value="Transaction">-->
+        <!--<f:param name="id" value="#{clientBean.id}"/>-->
+        <!--</h:link>-->
+
+
+        <div class="buttons">
+            <h:link value="View Portfolio" outcome="/client/portfolio" styleClass="btn btn-primary">
+                <f:param name="id" value="#{clientBean.id}"/>
+            </h:link>
+            <h:link value="View Transactions" outcome="/transaction/view" styleClass="btn btn-primary">
+                <f:param name="id" value="#{clientBean.id}"/>
+            </h:link>
+            <h:link value="View All" outcome="search" styleClass="btn btn-primary"/>
+            <h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+            <h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+        </div>
+    </ui:define>
+
+</ui:composition>

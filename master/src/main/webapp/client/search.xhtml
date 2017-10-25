@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="page" value='#{clientBean.page}'/>
+		<f:event type="preRenderView" listener='#{clientBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Search Client entities"/>
+
+	<ui:define name="header">
+		Client
+	</ui:define>
+
+	<ui:define name="subheader">
+		Search Client entities
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="search">
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="search">
+
+					<!--<h:panelGrid columnClasses="label,component,required" columns="3">-->
+						<!--<h:outputLabel for="clientBeanExampleName" value="Name:"/>-->
+						<!--<h:panelGroup>-->
+							<!--<h:inputText id="clientBeanExampleName" value="#{clientBean.example.name}"/>-->
+							<!--<h:message for="clientBeanExampleName" styleClass="error"/>-->
+						<!--</h:panelGroup>-->
+						<!--<h:outputText/>-->
+						<!--<h:outputLabel for="clientBeanExampleEmail" value="Email:"/>-->
+						<!--<h:panelGroup>-->
+							<!--<h:inputText id="clientBeanExampleEmail" value="#{clientBean.example.email}"/>-->
+							<!--<h:message for="clientBeanExampleEmail" styleClass="error"/>-->
+						<!--</h:panelGroup>-->
+						<!--<h:outputText/>-->
+					<!--</h:panelGrid>-->
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Search" action='#{clientBean.search}' styleClass="btn btn-primary"/>
+						<h:commandLink value="Create New" action='#{clientBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+			
+			<h:dataTable id="clientBeanPageItems" styleClass="data-table" value="#{clientBean.pageItems}" var="_item">
+				<h:column>
+				<f:facet name="header">
+					<h:outputText value="Name"/>
+				</f:facet>
+				<h:link outcome="/client/view">
+					<f:param name="id" value="#{_item.id}"/>
+					<h:outputText id="_itemName" value="#{_item.name}"/>
+				</h:link>
+			</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Date of Birth"/>
+					</f:facet>
+					<h:link outcome="/client/view">
+						<f:param name="id" value="#{_item.dob}"/>
+						<h:outputText id="_itemDob" value="#{_item.dob}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</h:link>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Email"/>
+					</f:facet>
+					<h:link outcome="/client/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="_itemEmail" value="#{_item.email}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{clientBean}'/>
+			</ui:include>
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>
