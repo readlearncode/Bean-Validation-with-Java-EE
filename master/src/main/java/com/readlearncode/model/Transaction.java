@@ -1,6 +1,6 @@
 package com.readlearncode.model;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.Objects;
 
@@ -24,10 +24,13 @@ public class Transaction {
     @NotNull
     private Stock stock;
 
+    @Positive
     @NotNull
     private Integer quantity;
 
     @NotNull
+    @Digits(integer = 10, fraction = 2)
+    @DecimalMin(value = "0", inclusive = false)
     private Double priceLimit;
 
     @NotNull
