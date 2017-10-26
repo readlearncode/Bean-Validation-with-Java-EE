@@ -32,6 +32,9 @@ public class Transaction {
     @NotNull
     private Integer quantity;
 
+//    @NotNull
+//    @Digits(integer = 10, fraction = 2)
+//    @DecimalMin(value = "0", inclusive = false)
     @PriceLimit
     private Double priceLimit;
 

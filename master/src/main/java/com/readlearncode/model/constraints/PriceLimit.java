@@ -1,7 +1,5 @@
 package com.readlearncode.model.constraints;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
@@ -24,11 +22,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @NotNull
 @Digits(integer = 10, fraction = 2)
 @DecimalMin(value = "0", inclusive = false)
-@Constraint(validatedBy = {})
 public @interface PriceLimit {
     String message() default "{com.readlearncode.model.constraint.PriceLimit.message}";
-
-    Class<?>[] groups() default {};
-
-    Class<? extends Payload>[] payload() default {};
 }
