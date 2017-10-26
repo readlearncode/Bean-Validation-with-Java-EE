@@ -30,7 +30,7 @@ public class TransactionTest {
         transaction.setPriceLimit(1.50);
         transaction.setType(Transaction.TYPE.BUY);
         transaction.setStock(new Stock());
-        transaction.setExerciseDate(dateFormat.parse("1978/12/2"));
+        transaction.setExerciseDate(dateFormat.parse("2020/12/2"));
 
         Set<ConstraintViolation<Transaction>> violations = validator.validate(transaction);
         assertThat(violations.size()).isEqualTo(0);
