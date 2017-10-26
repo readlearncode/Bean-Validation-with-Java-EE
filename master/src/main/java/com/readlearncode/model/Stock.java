@@ -1,9 +1,9 @@
 package com.readlearncode.model;
 
+import com.readlearncode.model.constraints.StockCode;
+
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Named
@@ -14,9 +14,10 @@ public class Stock {
 	@NotNull
 	private String name;
 
-	@NotNull
-	@Size(min = 3, max = 3)
-	@Pattern(regexp = "^[A-Z]*$")
+//	@NotNull
+//	@Size(min = 3, max = 3)
+//	@Pattern(regexp = "^[A-Z]*$")
+	@StockCode(size = 3)
 	private String code;
 
 	public Stock() {
