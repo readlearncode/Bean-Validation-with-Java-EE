@@ -2,6 +2,7 @@ package com.readlearncode.model;
 
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
@@ -13,8 +14,9 @@ public class Stock {
 	@NotNull
 	private String name;
 
-	@Size(min = 3, max = 3)
 	@NotNull
+	@Size(min = 3, max = 3)
+	@Pattern(regexp = "^[A-Z]*$")
 	private String code;
 
 	public Stock() {

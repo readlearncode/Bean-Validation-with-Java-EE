@@ -21,6 +21,7 @@ public class Client {
     @NotNull
     private Date dob; // Date Of Birth
 
+    @AssertTrue
     private Boolean acceptTOS; // Have the Terms Of Service been accepted
 
     public Client() {

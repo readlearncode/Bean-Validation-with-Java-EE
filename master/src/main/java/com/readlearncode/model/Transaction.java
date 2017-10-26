@@ -34,6 +34,7 @@ public class Transaction {
     private Double priceLimit;
 
     @NotNull
+    @FutureOrPresent
     private Date exerciseDate;
 
     public Transaction() {

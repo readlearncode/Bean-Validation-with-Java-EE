@@ -31,7 +31,7 @@ public class ClientTest {
 
     @Test
     public void givenClientPOJO_whenDataValid_shouldValidate() throws ParseException {
-        Client client = new Client(1L, "John Smith", dateFormat.parse("1978/12/2"), "alex@asdwer.com", true);
+        Client client = new Client(1L, "John Smith", dateFormat.parse("1978/12/2"), "alex@mydomin.something", true);
         Set<ConstraintViolation<Client>> violations = validator.validate(client);
         assertThat(violations.size()).isEqualTo(0);
     }
@@ -56,4 +56,30 @@ public class ClientTest {
         Set<ConstraintViolation<Optional<String>>> violations = validator.validate(things);
         assertThat(violations.size()).isEqualTo(1);
     }
+
+//    @Test
+//    public void givenClientPOJO_whenEmailDataInvalid_shouldNotValidate()  {
+//        Client client = new Client();
+//        client.setEmail("this_is_not_a_valid_email_address");
+//        Set<ConstraintViolation<Client>> violations = validator.validateProperty(client, "email");
+//        assertThat(violations.size()).isEqualTo(1);
+//    }
+//
+//    @Test
+//    public void givenClientPOJO_whenEmailDataValid_shouldValidate()  {
+//        Client client = new Client();
+//        client.setEmail("alex@theworld.something");
+//        Set<ConstraintViolation<Client>> violations = validator.validateProperty(client, "email");
+//        assertThat(violations.size()).isEqualTo(0);
+//    }
+
+    @Test
+    public void givenClientPOJO_whenEmailDataValid_shouldValidate()  {
+        Set<ConstraintViolation<Client>> violations = validator.validateValue(Client.class, "email", "invalid_email");
+        assertThat(violations.size()).isEqualTo(1);
+    }
+
+
+
+
 }
