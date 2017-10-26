@@ -37,7 +37,7 @@ public class TransactionTest {
     }
 
     @Test
-    public void givenTransactionPOJO_whenDataInvalid_shouldNotValidate() throws ParseException {
+    public void givenTransactionPOJO_whenDataInvalid_shouldNotValidate() {
         Transaction transaction = new Transaction();
         transaction.setQuantity(-10);
         transaction.setPriceLimit(12345678912.5555);
@@ -50,7 +50,7 @@ public class TransactionTest {
     }
 
     @Test
-    public void givenTransactionPOJO_whenPriceHasLongFraction_shouldNotValidate() throws ParseException {
+    public void givenTransactionPOJO_whenPriceHasLongFraction_shouldNotValidate() {
         Transaction transaction = new Transaction();
         transaction.setPriceLimit(1.5555);
         Set<ConstraintViolation<Transaction>> violations = validator.validateProperty(transaction, "priceLimit");
@@ -58,7 +58,7 @@ public class TransactionTest {
     }
 
     @Test
-    public void givenTransactionPOJO_whenPriceHasLongIntegral_shouldNotValidate() throws ParseException {
+    public void givenTransactionPOJO_whenPriceHasLongIntegral_shouldNotValidate() {
         Transaction transaction = new Transaction();
         transaction.setPriceLimit(12345678901.55);
         Set<ConstraintViolation<Transaction>> violations = validator.validateProperty(transaction, "priceLimit");
@@ -66,7 +66,7 @@ public class TransactionTest {
     }
 
     @Test
-    public void givenTransactionPOJO_whenPriceIsZero_shouldNotValidate() throws ParseException {
+    public void givenTransactionPOJO_whenPriceIsZero_shouldNotValidate() {
         Transaction transaction = new Transaction();
         transaction.setPriceLimit(0.0);
         Set<ConstraintViolation<Transaction>> violations = validator.validateProperty(transaction, "priceLimit");
@@ -74,7 +74,7 @@ public class TransactionTest {
     }
 
     @Test
-    public void givenTransactionPOJO_whenPriceIsNegative_shouldNotValidate() throws ParseException {
+    public void givenTransactionPOJO_whenPriceIsNegative_shouldNotValidate() {
         Transaction transaction = new Transaction();
         transaction.setPriceLimit(-1.0);
         Set<ConstraintViolation<Transaction>> violations = validator.validateProperty(transaction, "priceLimit");

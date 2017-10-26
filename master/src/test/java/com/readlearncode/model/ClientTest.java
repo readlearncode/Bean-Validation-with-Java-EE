@@ -84,6 +84,13 @@ public class ClientTest {
         Set<ConstraintViolation<Client>> violations = validator.validateValue(Client.class, "creditCardNumber", "5105105105105100");
         assertThat(violations.size()).isEqualTo(0);
     }
+
+    @Test
+    public void givenClientPOJO_whenCCNDataValidWithDashes_shouldValidate()  {
+        Set<ConstraintViolation<Client>> violations = validator.validateValue(Client.class, "creditCardNumber", "5105-1051/0510 5100");
+        assertThat(violations.size()).isEqualTo(0);
+    }
+
     @Test
     public void givenClientPOJO_whenCCNDataInvalid_shouldNotValidate()  {
         Set<ConstraintViolation<Client>> violations = validator.validateValue(Client.class, "creditCardNumber", "1234123412341234");

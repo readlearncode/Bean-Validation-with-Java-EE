@@ -26,7 +26,7 @@ public class Client {
     @AssertTrue
     private Boolean acceptTOS; // Have the Terms Of Service been accepted
 
-    @CreditCardNumber
+    @CreditCardNumber(ignoreNonDigitCharacters = true)
     private String creditCardNumber;
 
     public Client() {
