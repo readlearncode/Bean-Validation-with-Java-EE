@@ -37,6 +37,9 @@
             <h:outputLabel for="clientBeanClientEmail" value="Email:"/>
             <h:outputText id="clientBeanClientEmail" value="#{clientBean.client.email}"/>
             <h:outputText/>
+            <h:outputLabel for="clientBeanCreditCardNumber" value="Credit Card Number:"/>
+            <h:outputText id="clientBeanCreditCardNumber" value="#{clientBean.client.creditCardNumber}"/>
+            <h:outputText/>
             <h:outputLabel value="Accept TOS:"/>
             <h:outputText styleClass="#{clientBean.client.acceptTOS ? 'boolean-true' : 'boolean-false'}" value=""/>
             <h:outputText/>
@@ -49,9 +52,9 @@
 
 
         <div class="buttons">
-            <h:link value="View Portfolio" outcome="/client/portfolio" styleClass="btn btn-primary">
-                <f:param name="id" value="#{clientBean.id}"/>
-            </h:link>
+            <!--<h:link value="View Portfolio" outcome="/client/portfolio" styleClass="btn btn-primary">-->
+                <!--<f:param name="id" value="#{clientBean.id}"/>-->
+            <!--</h:link>-->
             <h:link value="View Transactions" outcome="/transaction/view" styleClass="btn btn-primary">
                 <f:param name="id" value="#{clientBean.id}"/>
             </h:link>

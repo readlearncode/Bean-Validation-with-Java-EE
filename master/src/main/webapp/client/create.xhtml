@@ -59,12 +59,27 @@
 					<h:message for="clientBeanClientEmail" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText value="*"/>
+
+
+
+
+				<h:outputLabel for="clientBeanCreditCardNumber" value="Credit Card Number:"/>
+				<h:panelGroup>
+					<h:inputText id="clientBeanCreditCardNumber" required="true" value="#{clientBean.client.creditCardNumber}"/>
+					<h:message for="clientBeanCreditCardNumber" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText value="*"/>
+
+
 				<h:outputLabel for="clientBeanClientAcceptTOS" value="Accept TOS:"/>
 				<h:panelGroup>
 					<h:selectBooleanCheckbox id="clientBeanClientAcceptTOS" value="#{clientBean.client.acceptTOS}"/>
 					<h:message for="clientBeanClientAcceptTOS" styleClass="error"/>
 				</h:panelGroup>
-				<h:outputText/>
+
+				<h:outputText value="*"/>
+
+
 			</h:panelGrid>
 
 			<div class="buttons">

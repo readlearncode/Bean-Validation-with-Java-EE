@@ -31,9 +31,9 @@ public class ClientResource {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         all = new ArrayList<>();
         try {
-            all.add(new Client(0L, "Alex Theedom", dateFormat.parse("1978/12/2"), "alex.theedom@gmail.com", true));
-            all.add(new Client(1L, "John Smith", dateFormat.parse("1965/10/12"), "email", true));
-            all.add(new Client(2L, "TEST", dateFormat.parse("1984/1/5"), "alex.theedom@gmail.com", true));
+            all.add(new Client(0L, "Alex Theedom", dateFormat.parse("1978/12/2"), "alex.theedom@gmail.com", true, "5105105105105100"));
+            all.add(new Client(1L, "John Smith", dateFormat.parse("1965/10/12"), "email", true, "5105105105105100"));
+            all.add(new Client(2L, "TEST", dateFormat.parse("1984/1/5"), "alex.theedom@gmail.com", true, "5105105105105100"));
         } catch (ParseException e) {
             e.printStackTrace();
         }

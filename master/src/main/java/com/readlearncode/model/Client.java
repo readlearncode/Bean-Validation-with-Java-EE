@@ -1,5 +1,7 @@
 package com.readlearncode.model;
 
+import org.hibernate.validator.constraints.CreditCardNumber;
+
 import javax.inject.Named;
 import javax.validation.constraints.*;
 import java.util.Date;
@@ -24,15 +26,19 @@ public class Client {
     @AssertTrue
     private Boolean acceptTOS; // Have the Terms Of Service been accepted
 
+    @CreditCardNumber
+    private String creditCardNumber;
+
     public Client() {
     }
 
-    public Client(Long id, String name, Date dob, String email, Boolean acceptTOS) {
+    public Client(Long id, String name, Date dob, String email, Boolean acceptTOS, String creditCardNumber) {
         this.id = id;
         this.name = name;
         this.dob = dob;
         this.email = email;
         this.acceptTOS = acceptTOS;
+        this.creditCardNumber = creditCardNumber;
     }
 
     public Long getId() {
@@ -75,21 +81,12 @@ public class Client {
         this.acceptTOS = acceptTOS;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Client client = (Client) o;
-        return Objects.equals(id, client.id) &&
-                Objects.equals(name, client.name) &&
-                Objects.equals(email, client.email) &&
-                Objects.equals(dob, client.dob) &&
-                Objects.equals(acceptTOS, client.acceptTOS);
+    public String getCreditCardNumber() {
+        return creditCardNumber;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, email, dob, acceptTOS);
+    public void setCreditCardNumber(String creditCardNumber) {
+        this.creditCardNumber = creditCardNumber;
     }
 
     @Override
@@ -100,6 +97,26 @@ public class Client {
                 ", email='" + email + '\'' +
                 ", dob=" + dob +
                 ", acceptTOS=" + acceptTOS +
+                ", creditCardNumber='" + creditCardNumber + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return Objects.equals(id, client.id) &&
+                Objects.equals(name, client.name) &&
+                Objects.equals(email, client.email) &&
+                Objects.equals(dob, client.dob) &&
+                Objects.equals(acceptTOS, client.acceptTOS) &&
+                Objects.equals(creditCardNumber, client.creditCardNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, email, dob, acceptTOS, creditCardNumber);
+    }
+
 }
