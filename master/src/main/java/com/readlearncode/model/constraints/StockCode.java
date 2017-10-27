@@ -22,7 +22,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = {StockCodeValidator.class})
 public @interface StockCode {
 
-    String message() default "{com.readlearncode.model.constraints.message}";
+    String message() default "{com.readlearncode.model.constraints.StockCode.message}";
 
     Class<?>[] groups() default {};
 
