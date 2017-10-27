@@ -1,6 +1,6 @@
 package com.readlearncode.model;
 
-import com.readlearncode.model.constraints.PriceLimit;
+import com.readlearncode.model.constraints.Price;
 
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
@@ -35,7 +35,8 @@ public class Transaction {
 //    @NotNull
 //    @Digits(integer = 10, fraction = 2)
 //    @DecimalMin(value = "0", inclusive = false)
-    @PriceLimit
+//    @PriceLimit
+    @Price(min = 0, max = 100)
     private Double priceLimit;
 
     @NotNull

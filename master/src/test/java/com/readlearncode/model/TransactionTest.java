@@ -80,4 +80,13 @@ public class TransactionTest {
         Set<ConstraintViolation<Transaction>> violations = validator.validateProperty(transaction, "priceLimit");
         assertThat(violations.size()).isEqualTo(1);
     }
+
+    @Test
+    public void givenTransactionPOJO_whenPriceMaxSet_shouldNotValidate() {
+        Transaction transaction = new Transaction();
+        transaction.setPriceLimit(150.0);
+        Set<ConstraintViolation<Transaction>> violations = validator.validateProperty(transaction, "priceLimit");
+        assertThat(violations.size()).isEqualTo(1);
+    }
+
 }
