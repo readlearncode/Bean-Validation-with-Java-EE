@@ -18,6 +18,9 @@ public class TransactionService {
     @EJB
     private TransactionResource transactionResource;
 
+    @EJB
+    private PortfolioService portfolioService;
+
     public void remove(Transaction transaction) {
         transactionResource.delete(transaction);
     }
@@ -38,9 +41,7 @@ public class TransactionService {
         return transactionResource.findAll();
     }
 
-//    public List<Transaction> getAllForClient(Long id) {
-//        return transactionResource.findAll().stream()
-//                .filter(transaction -> transaction.get.equals(id))
-//                .collect(Collectors.toList());
-//    }
+    public List<Transaction> getAllForClient(Long id) {
+        return portfolioService.getTransactionsForClient(id);
+    }
 }

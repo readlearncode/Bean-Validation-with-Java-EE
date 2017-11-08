@@ -9,6 +9,7 @@
                 template="/resources/scaffold/pageTemplate.xhtml">
 
     <f:metadata>
+        <f:viewParam name="id" value='#{transactionBean.clientId}'/>
         <f:viewParam name="id" value='#{transactionBean.id}'/>
         <f:event type="preRenderView" listener='#{transactionBean.retrieve}'/>
     </f:metadata>
@@ -99,7 +100,9 @@
 
             </h:panelGrid>
             <div class="buttons">
-                <h:commandLink value="Save" action='#{transactionBean.update}' styleClass="btn btn-primary"/>
+                <h:commandLink value="Save" action='#{transactionBean.update}' styleClass="btn btn-primary">
+                    <f:param name="id" value="#{transactionBean.clientId}"/>
+                </h:commandLink>
                 <c:choose>
                     <c:when test='#{!empty transactionBean.id}'>
                         <h:link value="Cancel" outcome="view" styleClass="btn btn-primary">

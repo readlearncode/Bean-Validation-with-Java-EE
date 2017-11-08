@@ -43,15 +43,17 @@ public class ClientTest {
         assertThat(violations.size()).isEqualTo(3);
     }
 
-    @Test @Ignore
-    public void givenCollection_whenDataInvalid_shouldNotValidate()  {
+    @Test
+    @Ignore
+    public void givenCollection_whenDataInvalid_shouldNotValidate() {
         List<@NotBlank String> things = null;
-        Set<ConstraintViolation<List<String> >> violations = validator.validate(things);
+        Set<ConstraintViolation<List<String>>> violations = validator.validate(things);
         assertThat(violations.size()).isEqualTo(1);
     }
 
-    @Test @Ignore
-    public void givenOptional_whenDataInvalid_shouldNotValidate()  {
+    @Test
+    @Ignore
+    public void givenOptional_whenDataInvalid_shouldNotValidate() {
         Optional<@Valid @NotEmpty String> things = Optional.of("");
         Set<ConstraintViolation<Optional<String>>> violations = validator.validate(things);
         assertThat(violations.size()).isEqualTo(1);
@@ -74,30 +76,51 @@ public class ClientTest {
 //    }
 
     @Test
-    public void givenClientPOJO_whenEmailDataValid_shouldValidate()  {
+    public void givenClientPOJO_whenEmailDataValid_shouldValidate() {
         Set<ConstraintViolation<Client>> violations = validator.validateValue(Client.class, "email", "invalid_email");
         assertThat(violations.size()).isEqualTo(1);
     }
 
     @Test
-    public void givenClientPOJO_whenCCNDataValid_shouldValidate()  {
+    public void givenClientPOJO_whenCCNDataValid_shouldValidate() {
         Set<ConstraintViolation<Client>> violations = validator.validateValue(Client.class, "creditCardNumber", "5105105105105100");
         assertThat(violations.size()).isEqualTo(0);
     }
 
     @Test
-    public void givenClientPOJO_whenCCNDataValidWithDashes_shouldValidate()  {
+    public void givenClientPOJO_whenCCNDataValidWithDashes_shouldValidate() {
         Set<ConstraintViolation<Client>> violations = validator.validateValue(Client.class, "creditCardNumber", "5105-1051/0510 5100");
         assertThat(violations.size()).isEqualTo(0);
     }
 
     @Test
-    public void givenClientPOJO_whenCCNDataInvalid_shouldNotValidate()  {
+    public void givenClientPOJO_whenCCNDataInvalid_shouldNotValidate() {
         Set<ConstraintViolation<Client>> violations = validator.validateValue(Client.class, "creditCardNumber", "1234123412341234");
         assertThat(violations.size()).isEqualTo(1);
     }
 
 
+    @Test
+    public void givenInvalidNameField_shouldPassCustomisedValidationFailureMessage() {
+        Set<ConstraintViolation<Client>> violations = validator.validateValue(Client.class, "name", "");
+        assertThat(violations.size()).isNotZero();
+        assertThat(violations.iterator().next().getMessage()).isEqualTo("Please ensure you enter your name");
+    }
+
+    @Test
+    public void givenInvalidEmail_shouldPassCustomisedValidationFailureMessage() {
+        Set<ConstraintViolation<Client>> violations = validator.validateValue(Client.class, "email", "not-valid-email");
+        assertThat(violations.size()).isNotZero();
+        assertThat(violations.iterator().next().getMessage()).isEqualTo("You have entered an invalid email");
+    }
+
+    @Test
+    public void givenDateOfBirth_shouldPassCustomisedValidationFailureMessage() throws ParseException {
+        Set<ConstraintViolation<Client>> violations = validator.validateValue(Client.class, "dob", dateFormat.parse("2020/01/01"));
+        assertThat(violations.size()).isNotZero();
+        assertThat(violations.iterator().next().getMessage())
+                .isEqualTo("The date " + dateFormat.parse("2020/01/01") + " is in the future. Please enter your date of birth!");
+    }
 
 
 }

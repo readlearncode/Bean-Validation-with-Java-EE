@@ -38,4 +38,4 @@ public class ClientService {
         return clientResource.findAll();
     }
 
-}
+    }

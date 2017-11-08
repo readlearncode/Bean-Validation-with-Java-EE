@@ -22,6 +22,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @NotNull
 @Digits(integer = 10, fraction = 2)
 @DecimalMin(value = "0", inclusive = false)
-public @interface PriceLimit {
+public @interface PriceLimit  {
     String message() default "{com.readlearncode.model.constraint.PriceLimit.message}";
 }

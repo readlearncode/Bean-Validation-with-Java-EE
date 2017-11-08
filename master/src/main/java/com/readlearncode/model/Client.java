@@ -12,18 +12,18 @@ public class Client {
 
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Please ensure you enter your name")
     private String name;
 
-    @Email
-    @NotNull
+    @Email(message = "You have entered an invalid email")
+    @NotNull(message = "You must enter an email")
     private String email;
 
-    @Past
-    @NotNull
+    @Past(message = "The date ${validatedValue} is in the future. Please enter your date of birth!")
+    @NotNull(message = "You must enter a date")
     private Date dob; // Date Of Birth
 
-    @AssertTrue
+    @AssertTrue(message = "You must accept the terms of service")
     private Boolean acceptTOS; // Have the Terms Of Service been accepted
 
     @CreditCardNumber(ignoreNonDigitCharacters = true)
@@ -91,14 +91,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", dob=" + dob +
-                ", acceptTOS=" + acceptTOS +
-                ", creditCardNumber='" + creditCardNumber + '\'' +
-                '}';
+        return name + " (" + id + ")";
     }
 
     @Override

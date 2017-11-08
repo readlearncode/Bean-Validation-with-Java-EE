@@ -46,7 +46,10 @@ public class PortfolioService {
     }
 
     public List<Transaction> getTransactionsForClient(Long clientId) {
-        return portfolios.get(clientId).getTransactions();
+        if (portfolios.containsKey(clientId)) {
+            return portfolios.get(clientId).getTransactions();
+        }
+        return new ArrayList<>();
     }
 
     public List<Holding> getHoldingsForClient(Long clientId) {
@@ -79,13 +82,12 @@ public class PortfolioService {
                         holding.get().setQuantity(newQuantity);
 
                         // Calculate new average price
-                        holding.get().setPrice(newValue/newQuantity);
+                        holding.get().setPrice(newValue / newQuantity);
                     }
                 }
 
 
         );
-
 
         return holdings;
     }

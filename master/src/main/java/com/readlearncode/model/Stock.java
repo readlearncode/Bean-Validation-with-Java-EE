@@ -17,7 +17,7 @@ public class Stock {
 //	@NotNull
 //	@Size(min = 3, max = 3)
 //	@Pattern(regexp = "^[A-Z]*$")
-	@StockCode(size = 3)
+	@StockCode(size = 3, message = "Stock must be {size} characters in length")
 	private String code;
 
 	public Stock() {

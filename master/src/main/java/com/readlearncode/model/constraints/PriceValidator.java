@@ -24,6 +24,8 @@ public class PriceValidator implements ConstraintValidator<Price, Double> {
     @Override
     public boolean isValid(Double value, ConstraintValidatorContext context) {
 
+        if (value == null) return false;
+
         if (value <= min || value >= max) {
             return false;
         }

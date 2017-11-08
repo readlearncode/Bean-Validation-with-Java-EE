@@ -86,7 +86,7 @@ public class ClientBean implements Serializable {
         if (this.id == null) {
             this.client = this.example;
         } else {
-            this.client = findById(getId());
+            this.client = findById(this.id);
         }
     }
 
@@ -95,14 +95,14 @@ public class ClientBean implements Serializable {
     }
 
 	/*
-	 * Support updating and deleting Client entities
+     * Support updating and deleting Client entities
 	 */
 
     public String update() {
         this.conversation.end();
 
         try {
-            if(this.client.getId() == null){
+            if (this.client.getId() == null) {
                 this.clientService.persist(this.client);
             } else {
                 this.clientService.merge(this.client);
@@ -130,7 +130,7 @@ public class ClientBean implements Serializable {
     }
 
 	/*
-	 * Support searching Client entities with pagination
+     * Support searching Client entities with pagination
 	 */
 
     private int page;
@@ -166,7 +166,7 @@ public class ClientBean implements Serializable {
 
     public void paginate() {
         this.pageItems = clientService.getAll();
-        this.count = 3;
+        this.count = pageItems.size();
     }
 
     public List<Client> getPageItems() {

@@ -51,5 +51,11 @@ public class StockTest {
         assertThat(violations.size()).isEqualTo(1);
     }
 
+    @Test
+    public void givenStockCode_shouldPassCustomisedValidationFailureMessage()  {
+        Set<ConstraintViolation<Stock>> violations = validator.validateValue(Stock.class, "code", "XXXX");
+        assertThat(violations.size()).isNotZero();
+        assertThat(violations.iterator().next().getMessage()).isEqualTo("Stock must be 3 characters in length");
+    }
 
 }

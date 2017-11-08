@@ -8,6 +8,7 @@
                 template="/resources/scaffold/pageTemplate.xhtml">
 
     <f:metadata>
+        <f:viewParam name="id" value='#{transactionBean.clientId}'/>
         <f:viewParam name="page" value='#{transactionBean.page}'/>
         <f:event type="preRenderView" listener='#{transactionBean.paginate}'/>
     </f:metadata>
@@ -32,7 +33,9 @@
                     <h:panelGroup styleClass="buttons">
                         <h:commandLink value="Search" action='#{transactionBean.search}' styleClass="btn btn-primary"/>
                         <h:commandLink value="Create New" action='#{transactionBean.create}'
-                                       styleClass="btn btn-primary"/>
+                                       styleClass="btn btn-primary">
+                            <f:param name="id" value="#{transactionBean.clientId}"/>
+                        </h:commandLink>
                     </h:panelGroup>
                 </h:panelGroup>
             </f:validateBean>

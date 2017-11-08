@@ -7,6 +7,7 @@
 	template="/resources/scaffold/pageTemplate.xhtml">
 
 	<f:metadata>
+		<f:viewParam name="id" value='#{clientBean.id}'/>
 		<f:viewParam name="page" value='#{clientBean.page}'/>
 		<f:event type="preRenderView" listener='#{clientBean.paginate}'/>
 	</f:metadata>
@@ -27,21 +28,6 @@
 		<h:form id="search">
 			<f:validateBean disabled="true">
 				<h:panelGroup styleClass="search">
-
-					<!--<h:panelGrid columnClasses="label,component,required" columns="3">-->
-						<!--<h:outputLabel for="clientBeanExampleName" value="Name:"/>-->
-						<!--<h:panelGroup>-->
-							<!--<h:inputText id="clientBeanExampleName" value="#{clientBean.example.name}"/>-->
-							<!--<h:message for="clientBeanExampleName" styleClass="error"/>-->
-						<!--</h:panelGroup>-->
-						<!--<h:outputText/>-->
-						<!--<h:outputLabel for="clientBeanExampleEmail" value="Email:"/>-->
-						<!--<h:panelGroup>-->
-							<!--<h:inputText id="clientBeanExampleEmail" value="#{clientBean.example.email}"/>-->
-							<!--<h:message for="clientBeanExampleEmail" styleClass="error"/>-->
-						<!--</h:panelGroup>-->
-						<!--<h:outputText/>-->
-					<!--</h:panelGrid>-->
 					<h:panelGroup styleClass="buttons">
 						<h:commandLink value="Search" action='#{clientBean.search}' styleClass="btn btn-primary"/>
 						<h:commandLink value="Create New" action='#{clientBean.create}' styleClass="btn btn-primary"/>

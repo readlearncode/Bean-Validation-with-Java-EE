@@ -55,6 +55,16 @@ public class TransactionBean implements Serializable {
 
     private Client client;
 
+    private Long clientId;
+
+    public Long getClientId() {
+        return this.clientId;
+    }
+
+    public void setClientId(Long id) {
+        this.clientId = id;
+    }
+
     public Integer getId() {
         return this.id;
     }
@@ -185,11 +195,11 @@ public class TransactionBean implements Serializable {
     }
 
     public void paginate() {
-//        if (client != null) {
-//            this.pageItems = transactionService.getAllForClient(client.getId());
-//        } else {
+        if (clientId != null) {
+            this.pageItems = transactionService.getAllForClient(clientId);
+        } else {
             this.pageItems = transactionService.getAll();
-//        }
+        }
         this.count = pageItems.size();
     }
 
@@ -202,7 +212,7 @@ public class TransactionBean implements Serializable {
     }
 
 	/*
-	 * Support listing and POSTing back Transaction entities (e.g. from inside
+     * Support listing and POSTing back Transaction entities (e.g. from inside
 	 * an HtmlSelectOneMenu)
 	 */
 
