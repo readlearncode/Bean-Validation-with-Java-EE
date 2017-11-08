@@ -39,33 +39,38 @@
             <h:panelGrid columnClasses="label,component,required" columns="3">
                 <h:outputLabel for="clientBeanClientName" value="Name:"/>
                 <h:panelGroup>
-                    <h:inputText id="clientBeanClientName"  value="#{clientBean.client.name}"/>
+                    <h:inputText id="clientBeanClientName" value="#{clientBean.client.name}"/>
                     <h:message for="clientBeanClientName" styleClass="error"/>
                 </h:panelGroup>
                 <h:outputText value="*"/>
 
                 <h:outputLabel for="clientBeanClientDob" value="Date of Birth:"/>
                 <h:panelGroup>
-                    <h:inputText id="clientBeanClientDob"  value="#{clientBean.client.dob}">
+                    <h:inputText id="clientBeanClientDob" value="#{clientBean.client.dob}">
                         <f:convertDateTime pattern="dd/MM/yyyy"/>
                     </h:inputText>
                     <h:message for="clientBeanClientDob" styleClass="error"/>
                 </h:panelGroup>
                 <h:outputText value="*"/>
 
-
                 <h:outputLabel for="clientBeanClientEmail" value="Email:"/>
                 <h:panelGroup>
-                    <h:inputText id="clientBeanClientEmail"  value="#{clientBean.client.email}"/>
+                    <h:inputText id="clientBeanClientEmail" value="#{clientBean.client.email}"/>
                     <h:message for="clientBeanClientEmail" styleClass="error"/>
                 </h:panelGroup>
                 <h:outputText value="*"/>
 
+                <h:outputLabel for="clientBeanClientConfirmEmail" value="Confirm Email:"/>
+                <h:panelGroup>
+                    <h:inputText id="clientBeanClientConfirmEmail" value="#{clientBean.client.confirmEmail}"/>
+                    <h:message for="clientBeanClientConfirmEmail" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText value="*"/>
 
                 <h:outputLabel for="clientBeanCreditCardNumber" value="Credit Card Number:"/>
                 <h:panelGroup>
-                    <h:inputText id="clientBeanCreditCardNumber"  value="#{clientBean.client.creditCardNumber}"/>
-                    <h:message  for="clientBeanCreditCardNumber" styleClass="error"/>
+                    <h:inputText id="clientBeanCreditCardNumber" value="#{clientBean.client.creditCardNumber}"/>
+                    <h:message for="clientBeanCreditCardNumber" styleClass="error"/>
                 </h:panelGroup>
                 <h:outputText value="*"/>
 

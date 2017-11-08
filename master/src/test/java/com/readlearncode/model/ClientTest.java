@@ -31,14 +31,14 @@ public class ClientTest {
 
     @Test
     public void givenClientPOJO_whenDataValid_shouldValidate() throws ParseException {
-        Client client = new Client(1L, "John Smith", dateFormat.parse("1978/12/2"), "alex@mydomin.something", true, "5105105105105100");
+        Client client = new Client(1L, "John Smith", dateFormat.parse("1978/12/2"), "alex@mydomin.something",  "alex@mydomin.something", true, "5105105105105100");
         Set<ConstraintViolation<Client>> violations = validator.validate(client);
         assertThat(violations.size()).isEqualTo(0);
     }
 
     @Test
     public void givenClientPOJO_whenDataInvalid_shouldNotValidate() throws ParseException {
-        Client client = new Client(null, null, null, null, null, "5105105105105100");
+        Client client = new Client(null, null, null, null,null, null, "5105105105105100");
         Set<ConstraintViolation<Client>> violations = validator.validate(client);
         assertThat(violations.size()).isEqualTo(3);
     }
@@ -122,5 +122,10 @@ public class ClientTest {
                 .isEqualTo("The date " + dateFormat.parse("2020/01/01") + " is in the future. Please enter your date of birth!");
     }
 
-
+    @Test
+    public void givenUnequalEmail_shouldFailValidation() throws ParseException {
+        Client client = new Client(1L, "John Smith", dateFormat.parse("1978/12/2"), "alex@mydomin.somethingA",  "alex@mydomin.somethingB", true, "5105105105105100");
+        Set<ConstraintViolation<Client>> violations = validator.validate(client);
+        assertThat(violations.size()).isEqualTo(1);
+    }
 }
