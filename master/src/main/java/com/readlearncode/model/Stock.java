@@ -11,7 +11,7 @@ public class Stock {
 
 	private Integer id;
 
-	@NotNull
+	@NotNull(message = "You must enter a company name")
 	private String name;
 
 //	@NotNull

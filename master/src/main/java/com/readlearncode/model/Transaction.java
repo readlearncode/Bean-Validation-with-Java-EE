@@ -22,14 +22,14 @@ public class Transaction {
 
     private Integer id;
 
-    @NotNull
+    @NotNull(message = "You must enter a transaction type")
     private TYPE type;
 
-    @NotNull
+    @NotNull(message = "You must select a Stock")
     private Stock stock;
 
-    @Positive
-    @NotNull
+    @Positive(message = "You must enter positive quantity")
+    @NotNull(message = "You must enter a quantity")
     private Integer quantity;
 
 //    @NotNull
@@ -39,7 +39,7 @@ public class Transaction {
     @Price(min = 0, max = 100)
     private Double priceLimit;
 
-    @NotNull
+    @NotNull(message = "Ensure that the exercise date has been entered")
     @FutureOrPresent
     private Date exerciseDate;
 
