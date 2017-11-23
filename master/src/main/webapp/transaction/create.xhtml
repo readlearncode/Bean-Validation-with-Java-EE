@@ -83,7 +83,10 @@
 
                 <h:outputLabel for="transactionBeanPriceLimit" value="Price Limit:"/>
                 <h:panelGroup>
-                    <h:inputText id="transactionBeanPriceLimit" value="#{transactionBean.transaction.priceLimit}"/>
+                    <h:inputText id="transactionBeanPriceLimit" value="#{transactionBean.transaction.priceLimit}">
+                        <f:validateBean for="transactionBeanPriceLimit"
+                                        validationGroups="com.readlearncode.model.MaxDealSizeGroup"/>
+                    </h:inputText>
                     <h:message for="transactionBeanPriceLimit" styleClass="error"/>
                 </h:panelGroup>
                 <h:outputText/>

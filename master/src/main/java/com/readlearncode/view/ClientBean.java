@@ -38,10 +38,6 @@ public class ClientBean implements Serializable {
     @EJB
     private ClientService clientService;
 
-
-    @Inject
-    private FacesContext facesContext;
-
     private Long id;
 
     public Long getId() {
@@ -74,7 +70,7 @@ public class ClientBean implements Serializable {
 
     public void retrieve() {
 
-        if (facesContext.isPostback()) {
+        if (FacesContext.getCurrentInstance().isPostback()) {
             return;
         }
 
@@ -109,7 +105,7 @@ public class ClientBean implements Serializable {
             }
             return "search?faces-redirect=true";
         } catch (Exception e) {
-            facesContext.addMessage(null,
+            FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(e.getMessage()));
             return null;
         }
@@ -123,7 +119,7 @@ public class ClientBean implements Serializable {
             this.clientService.remove(deletableEntity);
             return "search?faces-redirect=true";
         } catch (Exception e) {
-            facesContext.addMessage(null,
+            FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(e.getMessage()));
             return null;
         }
