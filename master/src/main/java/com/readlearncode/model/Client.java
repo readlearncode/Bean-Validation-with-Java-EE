@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Named
-@EqualFields(firstField = "email", secondField = "confirmEmail", message = "The email fields must match")
+@EqualFields(firstField = "email", secondField = "confirmEmail", message = "The email fields must match", groups = com.readlearncode.model.constraints.EqualFieldsGroup.class)
 public class Client {
 
     private Long id;
@@ -18,11 +18,11 @@ public class Client {
     private String name;
 
     @Email(message = "You have entered an invalid email")
-    @NotNull(message = "You must enter an email")
+    @NotNull(message = "You must enter an email", groups = com.readlearncode.model.constraints.EqualFieldsGroup.class)
     private String email;
 
     @Email(message = "You have entered an invalid email")
-    @NotNull(message = "You must enter an email")
+    @NotNull(message = "You must enter an email", groups = com.readlearncode.model.constraints.EqualFieldsGroup.class)
     private String confirmEmail;
 
     @Past(message = "The date ${validatedValue} is in the future. Please enter your date of birth!")

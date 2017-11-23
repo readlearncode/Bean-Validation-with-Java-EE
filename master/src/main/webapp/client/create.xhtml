@@ -1,6 +1,3 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
@@ -55,14 +52,18 @@
 
                 <h:outputLabel for="clientBeanClientEmail" value="Email:"/>
                 <h:panelGroup>
-                    <h:inputText id="clientBeanClientEmail" value="#{clientBean.client.email}"/>
+                    <h:inputText id="clientBeanClientEmail" value="#{clientBean.client.email}">
+                        <f:validateBean validationGroups="com.readlearncode.model.constraints.EqualFieldsGroup"/>
+                    </h:inputText>
                     <h:message for="clientBeanClientEmail" styleClass="error"/>
                 </h:panelGroup>
                 <h:outputText value="*"/>
 
                 <h:outputLabel for="clientBeanClientConfirmEmail" value="Confirm Email:"/>
                 <h:panelGroup>
-                    <h:inputText id="clientBeanClientConfirmEmail" value="#{clientBean.client.confirmEmail}"/>
+                    <h:inputText id="clientBeanClientConfirmEmail" value="#{clientBean.client.confirmEmail}">
+                        <f:validateBean validationGroups="com.readlearncode.model.constraints.EqualFieldsGroup"/>
+                    </h:inputText>
                     <h:message for="clientBeanClientConfirmEmail" styleClass="error"/>
                 </h:panelGroup>
                 <h:outputText value="*"/>
@@ -101,7 +102,12 @@
                     </c:otherwise>
                 </c:choose>
             </div>
+
+            <f:validateWholeBean value='#{clientBean}' validationGroups="com.readlearncode.model.constraints.EqualFieldsGroup"/>
+
         </h:form>
+
+
     </ui:define>
 
 </ui:composition>

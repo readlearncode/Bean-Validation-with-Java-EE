@@ -12,6 +12,7 @@
 
     <modules>
         <module>03_02_start</module>
+        <module>master</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -23,14 +24,32 @@
         <assertj-core.version>3.6.2</assertj-core.version>
         <hibernate-validator.version>6.0.2.Final</hibernate-validator.version>
         <javax.el.version>3.0.1-b08</javax.el.version>
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+        <hibernate-core.version>5.2.11.Final</hibernate-core.version>
+        <commons-beanutils.version>1.9.3</commons-beanutils.version>
+        <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
     </properties>
 
+
     <dependencies>
+
+        <!--<dependency>-->
+            <!--<groupId>javax.faces</groupId>-->
+            <!--<artifactId>javax.faces-api</artifactId>-->
+            <!--<version>2.3</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>javax.ejb</groupId>-->
+            <!--<artifactId>javax.ejb-api</artifactId>-->
+            <!--<version>3.2</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>${javaee-api.version}</version>
+            <!--<scope>provided</scope>-->
         </dependency>
 
         <dependency>
@@ -39,16 +58,29 @@
             <version>${hibernate-validator.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>javax.el</artifactId>
-            <version>${javax.el.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.glassfish</groupId>-->
+            <!--<artifactId>javax.el</artifactId>-->
+            <!--<version>${javax.el.version}</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator-cdi</artifactId>
             <version>${hibernate-validator.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>${commons-beanutils.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate-core.version}</version>
         </dependency>
 
         <!-- Test Dependencies -->
@@ -74,24 +106,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.0</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.0.0</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18.1</version>
             </plugin>
         </plugins>
     </build>

@@ -1,6 +1,3 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
@@ -74,10 +71,14 @@
 
                 <h:outputLabel for="transactionBeanQuantity" value="Quantity:"/>
                 <h:panelGroup>
-                    <h:inputText id="transactionBeanQuantity" value="#{transactionBean.transaction.quantity}"/>
+                    <h:inputText id="transactionBeanQuantity" value="#{transactionBean.transaction.quantity}">
+                        <f:validateBean for="transactionBeanQuantity"
+                                        validationGroups="com.readlearncode.model.MaxDealSizeGroup"/>
+                    </h:inputText>
                     <h:message for="transactionBeanQuantity" styleClass="error"/>
                 </h:panelGroup>
                 <h:outputText/>
+
 
 
                 <h:outputLabel for="transactionBeanPriceLimit" value="Price Limit:"/>
@@ -115,7 +116,10 @@
                     </c:otherwise>
                 </c:choose>
             </div>
+            <f:validateWholeBean value='#{transactionBean}' validationGroups="com.readlearncode.model.MaxDealSizeGroup" />
+
         </h:form>
+
     </ui:define>
 
 </ui:composition>

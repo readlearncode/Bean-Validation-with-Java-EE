@@ -3,16 +3,12 @@ package com.readlearncode.view;
 import com.readlearncode.model.Client;
 import com.readlearncode.service.ClientService;
 
-import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.ejb.SessionContext;
 import javax.ejb.Stateful;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -41,6 +37,10 @@ public class ClientBean implements Serializable {
 
     @EJB
     private ClientService clientService;
+
+
+    @Inject
+    private FacesContext facesContext;
 
     private Long id;
 
@@ -74,7 +74,7 @@ public class ClientBean implements Serializable {
 
     public void retrieve() {
 
-        if (FacesContext.getCurrentInstance().isPostback()) {
+        if (facesContext.isPostback()) {
             return;
         }
 
@@ -109,7 +109,7 @@ public class ClientBean implements Serializable {
             }
             return "search?faces-redirect=true";
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null,
+            facesContext.addMessage(null,
                     new FacesMessage(e.getMessage()));
             return null;
         }
@@ -123,7 +123,7 @@ public class ClientBean implements Serializable {
             this.clientService.remove(deletableEntity);
             return "search?faces-redirect=true";
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null,
+            facesContext.addMessage(null,
                     new FacesMessage(e.getMessage()));
             return null;
         }
@@ -177,44 +177,40 @@ public class ClientBean implements Serializable {
         return this.count;
     }
 
-	/*
-	 * Support listing and POSTing back Client entities (e.g. from inside an
-	 * HtmlSelectOneMenu)
-	 */
 
     public List<Client> getAll() {
         return clientService.getAll();
     }
 
-    @Resource
-    private SessionContext sessionContext;
+//    @Resource
+//    private SessionContext sessionContext;
 
-    public Converter getConverter() {
-
-        final ClientBean ejbProxy = this.sessionContext
-                .getBusinessObject(ClientBean.class);
-
-        return new Converter() {
-
-            @Override
-            public Object getAsObject(FacesContext context,
-                                      UIComponent component, String value) {
-
-                return ejbProxy.findById(Long.valueOf(value));
-            }
-
-            @Override
-            public String getAsString(FacesContext context,
-                                      UIComponent component, Object value) {
-
-                if (value == null) {
-                    return "";
-                }
-
-                return String.valueOf(((Client) value).getId());
-            }
-        };
-    }
+//    public Converter getConverter() {
+//
+//        final ClientBean ejbProxy = this.sessionContext
+//                .getBusinessObject(ClientBean.class);
+//
+//        return new Converter() {
+//
+//            @Override
+//            public Object getAsObject(FacesContext context,
+//                                      UIComponent component, String value) {
+//
+//                return ejbProxy.findById(Long.valueOf(value));
+//            }
+//
+//            @Override
+//            public String getAsString(FacesContext context,
+//                                      UIComponent component, Object value) {
+//
+//                if (value == null) {
+//                    return "";
+//                }
+//
+//                return String.valueOf(((Client) value).getId());
+//            }
+//        };
+//    }
 
 	/*
 	 * Support adding children to bidirectional, one-to-many tables
@@ -226,9 +222,9 @@ public class ClientBean implements Serializable {
         return this.add;
     }
 
-    public Client getAdded() {
-        Client added = this.add;
-        this.add = new Client();
-        return added;
-    }
+//    public Client getAdded() {
+//        Client added = this.add;
+//        this.add = new Client();
+//        return added;
+//    }
 }
