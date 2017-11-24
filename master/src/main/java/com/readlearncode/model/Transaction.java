@@ -19,7 +19,7 @@ import static javax.faces.annotation.FacesConfig.Version.JSF_2_3;
  * @version 1.0
  */
 @FacesConfig(version = JSF_2_3)
-@MaxDealSize(size = 10_000, type = Transaction.TYPE.BUY, message = "Transaction size too large")
+@MaxDealSize(size = 10_000, type = Transaction.TYPE.BUY)
 public class Transaction {
 
     public enum TYPE {
