@@ -1,4 +1,4 @@
-package com.readlearncode.model;
+package com.readlearncode.model.constraints;
 
 /**
  * Source code github.com/readlearncode

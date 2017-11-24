@@ -19,7 +19,7 @@ import static javax.faces.annotation.FacesConfig.Version.JSF_2_3;
  * @version 1.0
  */
 @FacesConfig(version = JSF_2_3)
-@MaxDealSize(size = 10_000, type = Transaction.TYPE.BUY, groups = com.readlearncode.model.MaxDealSizeGroup.class)
+@MaxDealSize(size = 10_000, type = Transaction.TYPE.BUY, message = "Transaction size too large")
 public class Transaction {
 
     public enum TYPE {
@@ -34,7 +34,7 @@ public class Transaction {
     @NotNull(message = "You must select a Stock")
     private Stock stock;
 
-    @Positive(message = "You must enter positive quantity", groups = com.readlearncode.model.MaxDealSizeGroup.class)
+    @Positive(message = "You must enter positive quantity")
     @NotNull(message = "You must enter a quantity")
     private Integer quantity;
 
@@ -42,7 +42,7 @@ public class Transaction {
 //    @Digits(integer = 10, fraction = 2)
 //    @DecimalMin(value = "0", inclusive = false)
 //    @PriceLimit
-    @Price(min = 0, max = 100, groups = com.readlearncode.model.MaxDealSizeGroup.class)
+    @Price(min = 0, max = 100)
     private Double priceLimit;
 
     @NotNull(message = "Ensure that the exercise date has been entered")

@@ -71,10 +71,7 @@
 
                 <h:outputLabel for="transactionBeanQuantity" value="Quantity:"/>
                 <h:panelGroup>
-                    <h:inputText id="transactionBeanQuantity" value="#{transactionBean.transaction.quantity}">
-                        <f:validateBean for="transactionBeanQuantity"
-                                        validationGroups="com.readlearncode.model.MaxDealSizeGroup"/>
-                    </h:inputText>
+                    <h:inputText id="transactionBeanQuantity" value="#{transactionBean.transaction.quantity}"/>
                     <h:message for="transactionBeanQuantity" styleClass="error"/>
                 </h:panelGroup>
                 <h:outputText/>
@@ -84,6 +81,7 @@
                 <h:outputLabel for="transactionBeanPriceLimit" value="Price Limit:"/>
                 <h:panelGroup>
                     <h:inputText id="transactionBeanPriceLimit" value="#{transactionBean.transaction.priceLimit}"/>
+
                     <h:message for="transactionBeanPriceLimit" styleClass="error"/>
                 </h:panelGroup>
                 <h:outputText/>
@@ -116,7 +114,7 @@
                     </c:otherwise>
                 </c:choose>
             </div>
-            <f:validateWholeBean value='#{transactionBean}' validationGroups="com.readlearncode.model.MaxDealSizeGroup" />
+            <f:validateWholeBean value='#{transactionBean}' />
 
         </h:form>
 

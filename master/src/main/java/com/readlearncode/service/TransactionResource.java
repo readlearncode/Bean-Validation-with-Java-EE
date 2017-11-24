@@ -56,9 +56,10 @@ public class TransactionResource {
                 .get();
     }
 
-    public void add(Transaction transaction) {
+    public Transaction add(Transaction transaction) {
         transaction.setId(nextId.getAndIncrement());
         all.add(transaction);
+        return transaction;
     }
 
     public void merge(Transaction transaction) {

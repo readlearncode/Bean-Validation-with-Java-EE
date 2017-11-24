@@ -25,8 +25,8 @@ public class TransactionService {
         transactionResource.delete(transaction);
     }
 
-    public void persist(Transaction transaction) {
-        transactionResource.add(transaction);
+    public Transaction persist(Transaction transaction) {
+        return transactionResource.add(transaction);
     }
 
     public void merge(Transaction transaction) {
@@ -43,5 +43,9 @@ public class TransactionService {
 
     public List<Transaction> getAllForClient(Long id) {
         return portfolioService.getTransactionsForClient(id);
+    }
+
+    public Transaction getTransaction(Integer id) {
+       return  transactionResource.findById(id);
     }
 }

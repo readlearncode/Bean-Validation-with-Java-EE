@@ -106,4 +106,16 @@ public class TransactionTest {
                 .isEqualTo("Please enter a valid price more than 0 and less than 100");
     }
 
+    @Test
+    public void givenPriceAndQuantity_shouldFailValidation() throws ParseException {
+        Transaction transaction = new Transaction();
+        transaction.setQuantity(100000);
+        transaction.setPriceLimit(99d);
+        transaction.setType(Transaction.TYPE.BUY);
+        transaction.setStock(new Stock());
+        transaction.setExerciseDate(dateFormat.parse("2020/12/2"));
+
+        Set<ConstraintViolation<Transaction>> violations = validator.validate(transaction);
+        assertThat(violations.size()).isEqualTo(1);
+    }
 }
