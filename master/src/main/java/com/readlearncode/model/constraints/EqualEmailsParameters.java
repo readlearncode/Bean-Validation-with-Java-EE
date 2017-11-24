@@ -15,20 +15,16 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * @author Alex Theedom www.readlearncode.com
  * @version 1.0
  */
-@Target({ METHOD, CONSTRUCTOR, ANNOTATION_TYPE })
+@Target({METHOD, CONSTRUCTOR, ANNOTATION_TYPE })
 @Retention(RUNTIME)
 @Documented
-@Constraint(validatedBy = {EqualityValidator.class})
-public @interface EqualFields {
+@Constraint(validatedBy = {EqualEmailsParametersValidator.class})
+public @interface EqualEmailsParameters {
 
-    String message() default "{com.readlearncode.model.constraints.EqualFields.message}";
+    String message() default "{com.readlearncode.model.constraints.EqualEmailsParameters.message}";
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
-
-    String firstField();
-
-    String secondField();
 
 }

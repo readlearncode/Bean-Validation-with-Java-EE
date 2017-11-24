@@ -128,4 +128,6 @@ public class ClientTest {
         Set<ConstraintViolation<Client>> violations = validator.validate(client);
         assertThat(violations.size()).isEqualTo(1);
     }
+
+
 }

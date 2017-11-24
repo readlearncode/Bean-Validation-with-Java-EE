@@ -4,6 +4,8 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import javax.validation.constraintvalidation.SupportedValidationTarget;
+import javax.validation.constraintvalidation.ValidationTarget;
 
 /**
  * Source code github.com/readlearncode
@@ -11,6 +13,7 @@ import javax.validation.ConstraintValidatorContext;
  * @author Alex Theedom www.readlearncode.com
  * @version 1.0
  */
+@SupportedValidationTarget(ValidationTarget.PARAMETERS)
 public class EqualityValidator implements ConstraintValidator<EqualFields, Object> {
 
     private String firstField;
