@@ -265,6 +265,19 @@ footer p {
 	width: auto;
 }
 
+#content .boolean-false {
+	display: block;
+	width: 22px;
+	height: 22px;
+	background-image: url(#{request.contextPath}/resources/false.png);
+}
+
+#content .boolean-true {
+	display: block;
+	width: 22px;
+	height: 22px;
+	background-image: url(#{request.contextPath}/resources/true.png);
+}
 
 #content .data-table .boolean-true {
 	margin: auto;
