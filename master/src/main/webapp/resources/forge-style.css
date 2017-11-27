@@ -236,15 +236,6 @@ footer p {
 	padding-left:10px;
 }
 
-#content .search {
-	display: block;
-	background-image: url(#{request.contextPath}/resources/search.png);
-	background-position: 30px 3px;
-    background-repeat: no-repeat;
-    padding-bottom: 20px;
-    padding-left: 70px;
-}
-
 #content .search .buttons {
 	text-align: left;
 	padding-left: 25%;
@@ -274,19 +265,6 @@ footer p {
 	width: auto;
 }
 
-#content .boolean-false {
-	display: block;
-	width: 22px;
-	height: 22px;
-	background-image: url(#{request.contextPath}/resources/false.png);
-}
-
-#content .boolean-true {
-	display: block;
-	width: 22px;
-	height: 22px;
-	background-image: url(#{request.contextPath}/resources/true.png);
-}
 
 #content .data-table .boolean-true {
 	margin: auto;
@@ -352,12 +330,6 @@ footer p {
 	text-align: center;
 }
 
-#content .data-table .remove-button {
-	display: block;
-	width: 22px;
-	height: 22px;
-	background-image: url(#{request.contextPath}/resources/remove.png);
-}
 
 #content .data-table-footer {
 	width: 50%;
@@ -377,16 +349,10 @@ footer p {
 	vertical-align: middle;
 }
 
-#content .add-button {
-	display: block;
-	width: 22px;
-	height: 22px;
-	background-image: url(#{request.contextPath}/resources/add.png);
-}
 
 #content .buttons {
 	display: block;
-	text-align: center;
+	text-align: right;
 	margin-top: 25px;
 	margin-bottom: 10px;
 }
@@ -424,13 +390,11 @@ footer p {
 	color:#867f10;
 	line-height:46px;
 	padding-top:5px;
-	border-top:1px solid #ccc;	
 }
 #content h2.success {
 	color:#5d8a10;
 	line-height:46px;
-	padding: 5px 0 20px 35px;
-	border-top:1px solid #ccc;
+	padding: 5px 0 0px 35px;
 	background: url(true.png) no-repeat 0px 15px transparent;
 }
 #content p {

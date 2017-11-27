@@ -41,7 +41,7 @@ public class TransactionService {
         return transactionResource.findAll();
     }
 
-    public List<Transaction> getAllForClient(Long id) {
+    public List<Transaction> getAllForClient(Integer id) {
         return portfolioService.getTransactionsForClient(id);
     }
 

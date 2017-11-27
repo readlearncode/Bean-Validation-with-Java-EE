@@ -6,9 +6,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Startup;
 import javax.ejb.Stateless;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -33,16 +30,7 @@ public class TransactionResource {
     @PostConstruct
     public void init() {
         all = new ArrayList<>();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        try {
-            all.add(new Transaction(0, Transaction.TYPE.BUY, stockResource.findById(0), 100, 2.04, dateFormat.parse("1978/12/2")));
-            all.add(new Transaction(1, Transaction.TYPE.BUY, stockResource.findById(1), 1000, 5.40, dateFormat.parse("1978/12/2")));
-            all.add(new Transaction(2, Transaction.TYPE.BUY, stockResource.findById(2), 350, 4.20, dateFormat.parse("1978/12/2")));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        nextId = new AtomicInteger(3);
+        nextId = new AtomicInteger(0);
     }
 
     public List<Transaction> findAll() {

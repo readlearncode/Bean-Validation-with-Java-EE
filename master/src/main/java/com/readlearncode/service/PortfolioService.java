@@ -21,7 +21,7 @@ public class PortfolioService {
 
     private AtomicInteger nextId;
 
-    private Map<Long, Portfolio> portfolios = new HashMap<>();
+    private Map<Integer, Portfolio> portfolios = new HashMap<>();
 
     @PostConstruct
     public void init() {
@@ -45,14 +45,14 @@ public class PortfolioService {
         return new Portfolio(nextId.getAndIncrement(), client.getId(), transaction);
     }
 
-    public List<Transaction> getTransactionsForClient(Long clientId) {
+    public List<Transaction> getTransactionsForClient(Integer clientId) {
         if (portfolios.containsKey(clientId)) {
             return portfolios.get(clientId).getTransactions();
         }
         return new ArrayList<>();
     }
 
-    public List<Holding> getHoldingsForClient(Long clientId) {
+    public List<Holding> getHoldingsForClient(Integer clientId) {
 
         List<Transaction> transactions = portfolios.get(clientId).getTransactions();
 

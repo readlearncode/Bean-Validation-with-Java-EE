@@ -52,19 +52,8 @@
 
                 <h:outputLabel for="clientBeanClientEmail" value="Email:"/>
                 <h:panelGroup>
-                    <h:inputText id="clientBeanClientEmail" value="#{clientBean.client.email}">
-                        <f:validateBean validationGroups="com.readlearncode.model.constraints.EqualFieldsGroup"/>
-                    </h:inputText>
+                    <h:inputText id="clientBeanClientEmail" value="#{clientBean.client.email}"/>
                     <h:message for="clientBeanClientEmail" styleClass="error"/>
-                </h:panelGroup>
-                <h:outputText value="*"/>
-
-                <h:outputLabel for="clientBeanClientConfirmEmail" value="Confirm Email:"/>
-                <h:panelGroup>
-                    <h:inputText id="clientBeanClientConfirmEmail" value="#{clientBean.client.confirmEmail}">
-                        <f:validateBean validationGroups="com.readlearncode.model.constraints.EqualFieldsGroup"/>
-                    </h:inputText>
-                    <h:message for="clientBeanClientConfirmEmail" styleClass="error"/>
                 </h:panelGroup>
                 <h:outputText value="*"/>
 
@@ -78,8 +67,7 @@
 
                 <h:outputLabel for="clientBeanClientAcceptTOS" value="Accept TOS:"/>
                 <h:panelGroup>
-                    <h:selectBooleanCheckbox id="clientBeanClientAcceptTOS"
-                                             value="#{clientBean.client.acceptTOS}"/>
+                    <h:selectBooleanCheckbox id="clientBeanClientAcceptTOS" value="#{clientBean.client.acceptTOS}"/>
                     <h:message for="clientBeanClientAcceptTOS" styleClass="error"/>
                 </h:panelGroup>
 
@@ -102,8 +90,6 @@
                     </c:otherwise>
                 </c:choose>
             </div>
-
-            <f:validateWholeBean value='#{clientBean}' validationGroups="com.readlearncode.model.constraints.EqualFieldsGroup"/>
 
         </h:form>
 

@@ -31,7 +31,7 @@ public class ClientConverter implements Converter {
         }
 
         try {
-            return clientService.find(Long.valueOf(submittedValue));
+            return clientService.find(Integer.valueOf(submittedValue));
         } catch (NumberFormatException e) {
             throw new ConverterException(new FacesMessage(String.format("%s is not a valid Client ID", submittedValue)), e);
         }

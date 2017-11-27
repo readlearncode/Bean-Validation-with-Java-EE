@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Holding {
 
     private Integer transactionId;
-    private Long stockId;
+    private Integer stockId;
     private String name;
     private Integer quantity;
     private Double price;
@@ -20,7 +20,7 @@ public class Holding {
     public Holding() {
     }
 
-    public Holding(Integer transactionId, Long stockId, String name, Integer quantity, Double price, Double value) {
+    public Holding(Integer transactionId, Integer stockId, String name, Integer quantity, Double price, Double value) {
         this.transactionId = transactionId;
         this.stockId = stockId;
         this.name = name;
@@ -29,11 +29,11 @@ public class Holding {
         this.value = value;
     }
 
-    public Long getStockId() {
+    public Integer getStockId() {
         return stockId;
     }
 
-    public void setStockId(Long stockId) {
+    public void setStockId(Integer stockId) {
         this.stockId = stockId;
     }
 

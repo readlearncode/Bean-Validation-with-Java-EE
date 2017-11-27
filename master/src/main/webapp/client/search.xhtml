@@ -1,5 +1,3 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -12,28 +10,20 @@
 		<f:event type="preRenderView" listener='#{clientBean.paginate}'/>
 	</f:metadata>
 
-	<ui:param name="pageTitle" value="Search Client entities"/>
+	<ui:param name="pageTitle" value="Clients"/>
 
 	<ui:define name="header">
-		Client
+		Clients
 	</ui:define>
 
 	<ui:define name="subheader">
-		Search Client entities
+		List of clients
 	</ui:define>
 
 	<ui:define name="footer"/>
 
 	<ui:define name="main">
-		<h:form id="search">
-			<f:validateBean disabled="true">
-				<h:panelGroup styleClass="search">
-					<h:panelGroup styleClass="buttons">
-						<h:commandLink value="Search" action='#{clientBean.search}' styleClass="btn btn-primary"/>
-						<h:commandLink value="Create New" action='#{clientBean.create}' styleClass="btn btn-primary"/>
-					</h:panelGroup>
-				</h:panelGroup>
-			</f:validateBean>
+		<h:form>
 			
 			<h:dataTable id="clientBeanPageItems" styleClass="data-table" value="#{clientBean.pageItems}" var="_item">
 				<h:column>
@@ -51,7 +41,7 @@
 						<h:outputText value="Date of Birth"/>
 					</f:facet>
 					<h:link outcome="/client/view">
-						<f:param name="id" value="#{_item.dob}"/>
+						<f:param name="id" value="#{_item.id}"/>
 						<h:outputText id="_itemDob" value="#{_item.dob}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
@@ -71,6 +61,15 @@
 			<ui:include src="/resources/scaffold/paginator.xhtml">
 				<ui:param name="paginatorBean" value='#{clientBean}'/>
 			</ui:include>
+
+            <f:validateBean disabled="true">
+                <h:panelGroup styleClass="">
+                    <h:panelGroup styleClass="buttons">
+                        <h:commandLink value="Create New" action='#{clientBean.create}' styleClass="btn btn-primary"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </f:validateBean>
+
 		</h:form>
 			
 	</ui:define>

@@ -26,10 +26,7 @@ public class StockResource {
     @PostConstruct
     public void init() {
         all = new ArrayList<>();
-        all.add(new Stock(0, "Big Corp Inc", "BIG"));
-        all.add(new Stock(1, "Mama Pizza Inc", "MAM"));
-        all.add(new Stock(2, "ICU Search Inc", "ICU"));
-        nextId = new AtomicInteger(3);
+        nextId = new AtomicInteger(0);
     }
 
     public List<Stock> findAll() {

@@ -14,18 +14,18 @@ import java.util.Objects;
 public class Portfolio {
 
     private Integer id;
-    private Long clientId;
+    private Integer clientId;
     private List<@NotNull Transaction> transactions = new ArrayList<>();
 
     public Portfolio() {
     }
 
-    public Portfolio(Integer id, Long clientId) {
+    public Portfolio(Integer id, Integer clientId) {
         this.id = id;
         this.clientId = clientId;
     }
 
-    public Portfolio(Integer id, Long clientId, Transaction transaction) {
+    public Portfolio(Integer id, Integer clientId, Transaction transaction) {
         this.id = id;
         this.clientId = clientId;
         this.transactions.add(transaction);
@@ -39,11 +39,11 @@ public class Portfolio {
         this.id = id;
     }
 
-    public Long getClientId() {
+    public Integer getClientId() {
         return clientId;
     }
 
-    public void setClientId(Long clientId) {
+    public void setClientId(Integer clientId) {
         this.clientId = clientId;
     }
 

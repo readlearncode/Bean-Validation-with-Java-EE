@@ -15,7 +15,7 @@ import static javax.faces.annotation.FacesConfig.Version.JSF_2_3;
 @FacesConfig(version = JSF_2_3)
 public class Client {
 
-    private Long id;
+    private Integer id;
 
     @NotBlank(message = "Please ensure you enter your name")
     private String name;
@@ -42,7 +42,7 @@ public class Client {
     }
 
     @EqualEmailsParameters
-    public Client(Long id, String name, Date dob, String email, String confirmEmail, Boolean acceptTOS, String creditCardNumber) {
+    public Client(Integer id, String name, Date dob, String email, String confirmEmail, Boolean acceptTOS, String creditCardNumber) {
         this.id = id;
         this.name = name;
         this.dob = dob;
@@ -52,11 +52,11 @@ public class Client {
         this.creditCardNumber = creditCardNumber;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(final Long id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 
