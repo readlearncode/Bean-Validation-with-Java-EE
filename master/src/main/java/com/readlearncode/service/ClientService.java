@@ -30,7 +30,7 @@ public class ClientService {
         clientResource.merge(client);
     }
 
-    public Client find(Long id) {
+    public Client find(Integer id) {
         return clientResource.findById(id);
     }
 

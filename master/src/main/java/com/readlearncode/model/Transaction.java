@@ -3,11 +3,14 @@ package com.readlearncode.model;
 import com.readlearncode.model.constraints.MaxDealSize;
 import com.readlearncode.model.constraints.Price;
 
+import javax.faces.annotation.FacesConfig;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.util.Date;
 import java.util.Objects;
+
+import static javax.faces.annotation.FacesConfig.Version.JSF_2_3;
 
 /**
  * Source code github.com/readlearncode
@@ -15,6 +18,7 @@ import java.util.Objects;
  * @author Alex Theedom www.readlearncode.com
  * @version 1.0
  */
+@FacesConfig(version = JSF_2_3)
 @MaxDealSize(size = 10_000, type = Transaction.TYPE.BUY)
 public class Transaction {
 

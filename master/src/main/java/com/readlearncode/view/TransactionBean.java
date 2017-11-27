@@ -5,30 +5,16 @@ import com.readlearncode.model.Transaction;
 import com.readlearncode.service.PortfolioService;
 import com.readlearncode.service.TransactionService;
 
-import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.ejb.SessionContext;
 import javax.ejb.Stateful;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
-
-/**
- * Backing bean for Transaction entities.
- * <p/>
- * This class provides CRUD functionality for all Transaction entities. It
- * focuses purely on Java EE 6 standards (e.g. <tt>&#64;ConversationScoped</tt>
- * for state management, <tt>PersistenceContext</tt> for persistence,
- * <tt>CriteriaBuilder</tt> for searches) rather than introducing a CRUD
- * framework or custom base class.
- */
 
 @Named
 @Stateful
@@ -37,14 +23,14 @@ public class TransactionBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /*
-     * Support creating and retrieving Transaction entities
-     */
     @EJB
     private TransactionService transactionService;
 
     @EJB
     private PortfolioService portfolioService;
+
+    @Inject
+    private FacesContext facesContext;
 
     @Inject
     private Conversation conversation;
@@ -55,13 +41,13 @@ public class TransactionBean implements Serializable {
 
     private Client client;
 
-    private Long clientId;
+    private Integer clientId;
 
-    public Long getClientId() {
+    public Integer getClientId() {
         return this.clientId;
     }
 
-    public void setClientId(Long id) {
+    public void setClientId(Integer id) {
         this.clientId = id;
     }
 
@@ -97,7 +83,7 @@ public class TransactionBean implements Serializable {
 
     public void retrieve() {
 
-        if (FacesContext.getCurrentInstance().isPostback()) {
+        if (facesContext.isPostback()) {
             return;
         }
 
@@ -121,11 +107,6 @@ public class TransactionBean implements Serializable {
         return Transaction.TYPE.values();
     }
 
-
-	/*
-     * Support updating and deleting Transaction entities
-	 */
-
     public String update() {
         this.conversation.end();
 
@@ -139,7 +120,7 @@ public class TransactionBean implements Serializable {
             }
             return "search?faces-redirect=true";
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null,
+            facesContext.addMessage(null,
                     new FacesMessage(e.getMessage()));
             return null;
         }
@@ -153,15 +134,12 @@ public class TransactionBean implements Serializable {
             this.transactionService.remove(deletableEntity);
             return "search?faces-redirect=true";
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null,
+            facesContext.addMessage(null,
                     new FacesMessage(e.getMessage()));
             return null;
         }
     }
 
-	/*
-     * Support searching Transaction entities with pagination
-	 */
 
     private int page;
     private long count;
@@ -189,10 +167,6 @@ public class TransactionBean implements Serializable {
         this.example = example;
     }
 
-    public String search() {
-        this.page = 0;
-        return null;
-    }
 
     public void paginate() {
         if (clientId != null) {
@@ -211,48 +185,9 @@ public class TransactionBean implements Serializable {
         return this.count;
     }
 
-	/*
-     * Support listing and POSTing back Transaction entities (e.g. from inside
-	 * an HtmlSelectOneMenu)
-	 */
-
     public List<Transaction> getAll() {
         return transactionService.getAll();
     }
-
-    @Resource
-    private SessionContext sessionContext;
-
-    public Converter getConverter() {
-
-        final TransactionBean ejbProxy = this.sessionContext
-                .getBusinessObject(TransactionBean.class);
-
-        return new Converter() {
-
-            @Override
-            public Object getAsObject(FacesContext context,
-                                      UIComponent component, String value) {
-
-                return ejbProxy.findById(Integer.valueOf(value));
-            }
-
-            @Override
-            public String getAsString(FacesContext context,
-                                      UIComponent component, Object value) {
-
-                if (value == null) {
-                    return "";
-                }
-
-                return String.valueOf(((Transaction) value).getId());
-            }
-        };
-    }
-
-	/*
-	 * Support adding children to bidirectional, one-to-many tables
-	 */
 
     private Transaction add = new Transaction();
 

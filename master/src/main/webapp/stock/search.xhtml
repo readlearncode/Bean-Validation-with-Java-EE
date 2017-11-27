@@ -1,5 +1,3 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -11,45 +9,21 @@
 		<f:event type="preRenderView" listener='#{stockBean.paginate}'/>
 	</f:metadata>
 
-	<ui:param name="pageTitle" value="Search Stock entities"/>
+	<ui:param name="pageTitle" value="Stock List"/>
 
 	<ui:define name="header">
-		Stock
+		Stocks
 	</ui:define>
 
 	<ui:define name="subheader">
-		Search Stock entities
+		List of stocks
 	</ui:define>
 
 	<ui:define name="footer"/>
 
 	<ui:define name="main">
 		<h:form id="search">
-			<f:validateBean disabled="true">
-				<h:panelGroup styleClass="search">
-
-					<!--<h:panelGrid columnClasses="label,component,required" columns="3">-->
-						<!--<h:outputLabel for="stockBeanExampleName" value="Name:"/>-->
-						<!--<h:panelGroup>-->
-							<!--<h:inputText id="stockBeanExampleName" value="#{stockBean.example.name}"/>-->
-							<!--<h:message for="stockBeanExampleName" styleClass="error"/>-->
-						<!--</h:panelGroup>-->
-						<!--<h:outputText/>-->
-						<!--<h:outputLabel for="stockBeanExampleCode" value="Code:"/>-->
-						<!--<h:panelGroup>-->
-							<!--<h:inputText id="stockBeanExampleCode" value="#{stockBean.example.code}"/>-->
-							<!--<h:message for="stockBeanExampleCode" styleClass="error"/>-->
-						<!--</h:panelGroup>-->
-						<!--<h:outputText/>-->
-					<!--</h:panelGrid>-->
-					<h:panelGroup styleClass="buttons">
-						<h:commandLink value="Search" action='#{stockBean.search}' styleClass="btn btn-primary"/>
-						<h:commandLink value="Create New" action='#{stockBean.create}' styleClass="btn btn-primary"/>
-					</h:panelGroup>
-				</h:panelGroup>
-			</f:validateBean>
-			
-			<h:dataTable id="stockBeanPageItems" styleClass="data-table" value="#{stockBean.pageItems}" var="_item">
+			<h:dataTable width="50%" id="stockBeanPageItems" styleClass="data-table" value="#{stockBean.pageItems}" var="_item">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Name"/>
@@ -59,15 +33,6 @@
 						<h:outputText id="_itemName" value="#{_item.name}"/>
 					</h:link>
 				</h:column>
-				<!--<h:column>-->
-					<!--<f:facet name="header">-->
-						<!--<h:outputText value="Id"/>-->
-					<!--</f:facet>-->
-					<!--<h:link outcome="/stock/view">-->
-						<!--<f:param name="id" value="#{_item.id}"/>-->
-						<!--<h:outputText id="_itemId" value="#{_item.id}"/>-->
-					<!--</h:link>-->
-				<!--</h:column>-->
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Code"/>
@@ -81,6 +46,15 @@
 			<ui:include src="/resources/scaffold/paginator.xhtml">
 				<ui:param name="paginatorBean" value='#{stockBean}'/>
 			</ui:include>
+
+			<f:validateBean disabled="true">
+				<h:panelGroup styleClass="">
+					<h:panelGroup styleClass="buttons">
+						<h:commandLink value="Create New" action='#{stockBean.create}' styleClass="btn btn-primary"/>
+					</h:panelGroup>
+				</h:panelGroup>
+			</f:validateBean>
+
 		</h:form>
 			
 	</ui:define>

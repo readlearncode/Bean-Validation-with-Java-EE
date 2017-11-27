@@ -1,18 +1,21 @@
 package com.readlearncode.model;
 
-import com.readlearncode.model.constraints.EqualFields;
+import com.readlearncode.model.constraints.EqualEmailsParameters;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
+import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.Objects;
 
+import static javax.faces.annotation.FacesConfig.Version.JSF_2_3;
+
 @Named
-@EqualFields(firstField = "email", secondField = "confirmEmail", message = "The email fields must match", groups = com.readlearncode.model.constraints.EqualFieldsGroup.class)
+@FacesConfig(version = JSF_2_3)
 public class Client {
 
-    private Long id;
+    private Integer id;
 
     @NotBlank(message = "Please ensure you enter your name")
     private String name;
@@ -38,7 +41,8 @@ public class Client {
     public Client() {
     }
 
-    public Client(Long id, String name, Date dob, String email, String confirmEmail, Boolean acceptTOS, String creditCardNumber) {
+    @EqualEmailsParameters
+    public Client(Integer id, String name, Date dob, String email, String confirmEmail, Boolean acceptTOS, String creditCardNumber) {
         this.id = id;
         this.name = name;
         this.dob = dob;
@@ -48,11 +52,11 @@ public class Client {
         this.creditCardNumber = creditCardNumber;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(final Long id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 

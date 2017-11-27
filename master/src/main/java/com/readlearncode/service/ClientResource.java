@@ -5,12 +5,9 @@ import com.readlearncode.model.Client;
 import javax.annotation.PostConstruct;
 import javax.ejb.Startup;
 import javax.ejb.Stateless;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Source code github.com/readlearncode
@@ -22,29 +19,21 @@ import java.util.concurrent.atomic.AtomicLong;
 @Startup
 public class ClientResource {
 
-    private AtomicLong nextId;
+    private AtomicInteger nextId;
 
     private List<Client> all;
 
     @PostConstruct
     public void init() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         all = new ArrayList<>();
-        try {
-            all.add(new Client(0L, "Jane Brown", dateFormat.parse("1978/12/2"), "jane@brown.xx.com", "jane@brown.xx.com", true, "5105105105105100"));
-            all.add(new Client(1L, "John Smith", dateFormat.parse("1965/10/12"), "john@example.com", "john@example.com", true, "5105105105105100"));
-            all.add(new Client(2L, "Gorden Gecko", dateFormat.parse("1984/1/5"), "gorden@gecko.xx.com", "gorden@gecko.com", true, "5105105105105100"));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        nextId = new AtomicLong(3);
+        nextId = new AtomicInteger(0);
     }
 
     public List<Client> findAll() {
         return all;
     }
 
-    public Client findById(Long id) {
+    public Client findById(Integer id) {
         return all.stream()
                 .filter(client -> client.getId().equals(id))
                 .findFirst()

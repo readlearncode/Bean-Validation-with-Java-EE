@@ -4,21 +4,18 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-	<title>#{empty pageTitle ? 'Page Title' : pageTitle}</title>
-	<link rel="icon" href='#{resource["favicon.ico"]}' />
+	<title>Gecko Brokers</title>
 	<h:outputStylesheet name="bootstrap.css" />
 	<h:outputStylesheet name="forge-style.css" />
 </h:head>
 
 <h:body>
-	<ui:debug rendered="#{facesContext.application.projectStage == 'Development'}" />
+
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
 				<h:link id="brandLink" outcome="/index.xhtml" styleClass="brand">
-					<h:outputText value="Welcome to " rendered=" #{request.userPrincipal !=null} "/>
-                    Master
-                    <h:outputText value=",  #{request.userPrincipal.name}" rendered="#{request.userPrincipal !=null} "/>
+                    Gecko Brokers
 				</h:link>
 				<div class="nav-collapse collapse">
 
@@ -30,8 +27,9 @@
 	<div class="container forgecontainer">
 		<div id="navigation">
 			<h:link id="homeLink" outcome="/index.xhtml">
-				<h:graphicImage value='#{resource["forge-logo.png"]}' alt="Forge... get hammered" border="0" />	
+				<h:graphicImage value='#{resource["logo.png"]}' width="195" alt="Gekco - greed is good!" border="0" />
 			</h:link>
+            <br/>
 			<ul>
 				<li>
 					<h:link outcome="/client/search" value="Client Adminstration"/>
@@ -59,7 +57,7 @@
 
 	<footer>
 		<div id="footer-wrapper">
-	    	<p>Powered by <a href="http://jboss.org/forge">Forge</a></p>
+	    	<p>Powered by <a href="http://jboss.org/forge">Forge</a> | Image by <a href="https://pixabay.com/">Pixabay</a> </p>
 	    </div>
 	</footer>
 

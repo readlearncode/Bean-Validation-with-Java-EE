@@ -25,8 +25,16 @@ public class MaxDealSizeValidator implements ConstraintValidator<MaxDealSize, Tr
 
     @Override
     public boolean isValid(Transaction transaction, ConstraintValidatorContext context) {
-        return type.equals(transaction.getType())
+        boolean isValid = type.equals(transaction.getType())
                 && transaction.getQuantity() * transaction.getPriceLimit()
                 < size;
+
+        if (!isValid) {
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate("{com.readlearncode.model.constraints.MaxDealSize.message}")
+                    .addPropertyNode("quantity").addConstraintViolation();
+        }
+
+        return isValid;
     }
 }

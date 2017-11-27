@@ -1,6 +1,3 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
@@ -19,7 +16,7 @@
     </ui:define>
 
     <ui:define name="subheader">
-        View existing Client
+        View an existing client
     </ui:define>
 
     <ui:define name="footer"/>
@@ -45,16 +42,7 @@
             <h:outputText/>
         </h:panelGrid>
 
-
-        <!--<h:link outcome="/transaction/view" value="Transaction">-->
-        <!--<f:param name="id" value="#{clientBean.id}"/>-->
-        <!--</h:link>-->
-
-
         <div class="buttons">
-            <!--<h:link value="View Portfolio" outcome="/client/portfolio" styleClass="btn btn-primary">-->
-                <!--<f:param name="id" value="#{clientBean.id}"/>-->
-            <!--</h:link>-->
             <h:link value="View Transactions" outcome="/transaction/view_transactions" styleClass="btn btn-primary">
                 <f:param name="id" value="#{clientBean.id}"/>
             </h:link>

@@ -14,16 +14,6 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Backing bean for Client entities.
- * <p/>
- * This class provides CRUD functionality for all Client entities. It focuses
- * purely on Java EE 6 standards (e.g. <tt>&#64;ConversationScoped</tt> for
- * state management, <tt>PersistenceContext</tt> for persistence,
- * <tt>CriteriaBuilder</tt> for searches) rather than introducing a CRUD
- * framework or custom base class.
- */
-
 @Named
 @Stateful
 @ConversationScoped
@@ -31,20 +21,19 @@ public class ClientBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-	/*
-     * Support creating and retrieving Client entities
-	 */
-
     @EJB
     private ClientService clientService;
 
-    private Long id;
+    @Inject
+    private FacesContext facesContext;
 
-    public Long getId() {
+    private Integer id;
+
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -62,7 +51,6 @@ public class ClientBean implements Serializable {
     private Conversation conversation;
 
     public String create() {
-
         this.conversation.begin();
         this.conversation.setTimeout(1800000L);
         return "create?faces-redirect=true";
@@ -70,7 +58,7 @@ public class ClientBean implements Serializable {
 
     public void retrieve() {
 
-        if (FacesContext.getCurrentInstance().isPostback()) {
+        if (facesContext.isPostback()) {
             return;
         }
 
@@ -86,13 +74,9 @@ public class ClientBean implements Serializable {
         }
     }
 
-    public Client findById(Long id) {
+    public Client findById(Integer id) {
         return this.clientService.find(id);
     }
-
-	/*
-     * Support updating and deleting Client entities
-	 */
 
     public String update() {
         this.conversation.end();
@@ -105,7 +89,7 @@ public class ClientBean implements Serializable {
             }
             return "search?faces-redirect=true";
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null,
+            facesContext.addMessage(null,
                     new FacesMessage(e.getMessage()));
             return null;
         }
@@ -119,15 +103,12 @@ public class ClientBean implements Serializable {
             this.clientService.remove(deletableEntity);
             return "search?faces-redirect=true";
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null,
+            facesContext.addMessage(null,
                     new FacesMessage(e.getMessage()));
             return null;
         }
     }
 
-	/*
-     * Support searching Client entities with pagination
-	 */
 
     private int page;
     private long count;
@@ -155,11 +136,6 @@ public class ClientBean implements Serializable {
         this.example = example;
     }
 
-    public String search() {
-        this.page = 0;
-        return null;
-    }
-
     public void paginate() {
         this.pageItems = clientService.getAll();
         this.count = pageItems.size();
@@ -173,44 +149,9 @@ public class ClientBean implements Serializable {
         return this.count;
     }
 
-
     public List<Client> getAll() {
         return clientService.getAll();
     }
-
-//    @Resource
-//    private SessionContext sessionContext;
-
-//    public Converter getConverter() {
-//
-//        final ClientBean ejbProxy = this.sessionContext
-//                .getBusinessObject(ClientBean.class);
-//
-//        return new Converter() {
-//
-//            @Override
-//            public Object getAsObject(FacesContext context,
-//                                      UIComponent component, String value) {
-//
-//                return ejbProxy.findById(Long.valueOf(value));
-//            }
-//
-//            @Override
-//            public String getAsString(FacesContext context,
-//                                      UIComponent component, Object value) {
-//
-//                if (value == null) {
-//                    return "";
-//                }
-//
-//                return String.valueOf(((Client) value).getId());
-//            }
-//        };
-//    }
-
-	/*
-	 * Support adding children to bidirectional, one-to-many tables
-	 */
 
     private Client add = new Client();
 
@@ -218,9 +159,4 @@ public class ClientBean implements Serializable {
         return this.add;
     }
 
-//    public Client getAdded() {
-//        Client added = this.add;
-//        this.add = new Client();
-//        return added;
-//    }
 }
