@@ -1,6 +1,7 @@
 package com.readlearncode.model;
 
 import javax.faces.annotation.FacesConfig;
+import javax.inject.Named;
 import java.util.Date;
 import java.util.Objects;
 
@@ -12,6 +13,7 @@ import static javax.faces.annotation.FacesConfig.Version.JSF_2_3;
  * @author Alex Theedom www.readlearncode.com
  * @version 1.0
  */
+@Named
 @FacesConfig(version = JSF_2_3)
 public class Transaction {
 
