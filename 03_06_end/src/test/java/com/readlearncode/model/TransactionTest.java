@@ -81,4 +81,21 @@ public class TransactionTest {
         assertThat(violations.size()).isEqualTo(1);
     }
 
+    // challenge solutions
+    @Test
+    public void givenTransactionPOJO_whenQuantityNegative_shouldNotValidate()  {
+        Transaction transaction = new Transaction();
+        transaction.setQuantity(-1);
+        Set<ConstraintViolation<Transaction>> violations = validator.validateProperty(transaction, "quantity");
+        assertThat(violations.size()).isEqualTo(1);
+    }
+
+    @Test
+    public void givenTransactionPOJO_whenQuantityPositive_shouldValidate()  {
+        Transaction transaction = new Transaction();
+        transaction.setQuantity(10);
+        Set<ConstraintViolation<Transaction>> violations = validator.validateProperty(transaction, "quantity");
+        assertThat(violations.size()).isEqualTo(0);
+    }
+
 }
