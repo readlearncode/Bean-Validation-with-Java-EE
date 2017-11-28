@@ -1,7 +1,6 @@
 package com.readlearncode.model;
 
 import javax.faces.annotation.FacesConfig;
-import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Objects;
@@ -23,16 +22,19 @@ public class Transaction {
 
     private Integer id;
 
+    @NotNull
     private TYPE type;
 
+    @NotNull
     private Stock stock;
 
+    @NotNull
     private Integer quantity;
 
+    @NotNull
     private Double priceLimit;
 
-    @NotNull(message = "Ensure that the exercise date has been entered")
-    @FutureOrPresent
+    @NotNull
     private Date exerciseDate;
 
     public Transaction() {

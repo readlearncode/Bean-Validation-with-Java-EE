@@ -1,6 +1,7 @@
 package com.readlearncode.model;
 
 import javax.inject.Named;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Named
@@ -8,8 +9,10 @@ public class Stock {
 
 	private Integer id;
 
+	@NotNull
 	private String name;
 
+	@NotNull
 	private String code;
 
 	public Stock() {
