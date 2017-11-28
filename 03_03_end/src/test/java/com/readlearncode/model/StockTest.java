@@ -27,36 +27,12 @@ public class StockTest {
         assertThat(violations.size()).isEqualTo(0);
     }
 
-
-    @Test
-    public void givenStockPOJO_whenCodeTooShort_shouldNotValidate()   {
-        Stock stock = new Stock();
-        stock.setCode("X");
-        Set<ConstraintViolation<Stock>> violations = validator.validateProperty(stock, "code");
-        assertThat(violations.size()).isEqualTo(1);
-    }
-
-    @Test
-    public void givenStockPOJO_whenCodeTooLong_shouldNotValidate()   {
-        Stock stock = new Stock();
-        stock.setCode("XXXX");
-        Set<ConstraintViolation<Stock>> violations = validator.validateProperty(stock, "code");
-        assertThat(violations.size()).isEqualTo(1);
-    }
-
     @Test
     public void givenStockPOJO_whenCodeNull_shouldNotValidate()   {
         Stock stock = new Stock();
         stock.setCode(null);
         Set<ConstraintViolation<Stock>> violations = validator.validateProperty(stock, "code");
         assertThat(violations.size()).isEqualTo(1);
-    }
-
-    @Test
-    public void givenStockCode_shouldPassCustomisedValidationFailureMessage()  {
-        Set<ConstraintViolation<Stock>> violations = validator.validateValue(Stock.class, "code", "XXXX");
-        assertThat(violations.size()).isNotZero();
-        assertThat(violations.iterator().next().getMessage()).isEqualTo("Stock must be 3 characters in length");
     }
 
 }
