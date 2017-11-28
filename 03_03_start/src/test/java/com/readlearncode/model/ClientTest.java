@@ -20,21 +20,14 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
  */
 public class ClientTest {
 
-    private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-    private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-
     @Test
     public void givenClientPOJO_whenDataValid_shouldValidate() throws ParseException {
-        Client client = new Client(1, "John Smith", dateFormat.parse("1978/12/2"), "alex@mydomin.something",  "alex@mydomin.something", true, "5105105105105100");
-        Set<ConstraintViolation<Client>> violations = validator.validate(client);
-        assertThat(violations.size()).isEqualTo(0);
+
     }
 
     @Test
     public void givenClientPOJO_whenDataInvalid_shouldNotValidate() throws ParseException {
-        Client client = new Client(null, null, null, null,null, null, "5105105105105100");
-        Set<ConstraintViolation<Client>> violations = validator.validate(client);
-        assertThat(violations.size()).isEqualTo(3);
+
     }
 
 }

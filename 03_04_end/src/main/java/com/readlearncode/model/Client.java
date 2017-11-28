@@ -2,10 +2,7 @@ package com.readlearncode.model;
 
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 import java.util.Date;
 import java.util.Objects;
 
@@ -20,15 +17,12 @@ public class Client {
     @NotNull
     private String name;
 
-    @Email
     @NotNull
     private String email;
 
-    @Past
     @NotNull
     private Date dob; // Date Of Birth
 
-    @AssertTrue
     private Boolean acceptTOS; // Have the Terms Of Service been accepted
 
     @NotNull

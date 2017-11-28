@@ -1,6 +1,5 @@
 package com.readlearncode.model;
 
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -15,7 +14,7 @@ public class Portfolio {
 
     private Integer id;
     private Integer clientId;
-    private List<@NotNull Transaction> transactions = new ArrayList<>();
+    private List<Transaction> transactions = new ArrayList<>();
 
     public Portfolio() {
     }

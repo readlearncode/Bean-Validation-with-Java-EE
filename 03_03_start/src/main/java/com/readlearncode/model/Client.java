@@ -25,13 +25,12 @@ public class Client {
 
     private Boolean acceptTOS; // Have the Terms Of Service been accepted
 
-    @NotNull
     private String creditCardNumber;
 
     public Client() {
     }
 
-    public Client(Integer id, String name, Date dob, String email, String confirmEmail, Boolean acceptTOS, String creditCardNumber) {
+    public Client(Integer id, String name, Date dob, String email, Boolean acceptTOS, String creditCardNumber) {
         this.id = id;
         this.name = name;
         this.dob = dob;
