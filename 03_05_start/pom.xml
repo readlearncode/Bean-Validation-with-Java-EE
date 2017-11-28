@@ -11,7 +11,7 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>03_04_start</artifactId>
+    <artifactId>03_05_start</artifactId>
 
     <packaging>war</packaging>
 

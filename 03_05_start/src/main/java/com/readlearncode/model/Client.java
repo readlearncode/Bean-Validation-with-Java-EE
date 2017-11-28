@@ -31,7 +31,7 @@ public class Client {
     public Client() {
     }
 
-    public Client(Integer id, String name, Date dob, String email, String confirmEmail, Boolean acceptTOS, String creditCardNumber) {
+    public Client(Integer id, String name, Date dob, String email, Boolean acceptTOS, String creditCardNumber) {
         this.id = id;
         this.name = name;
         this.dob = dob;

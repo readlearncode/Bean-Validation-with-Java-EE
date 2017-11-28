@@ -55,9 +55,9 @@ public class Bootstrap {
             transactionResource.add(new Transaction(3, Transaction.TYPE.BUY, stockResource.findById(2), 300, 4.30, dateFormat.parse("2017/10/18")));
             transactionResource.add(new Transaction(4, Transaction.TYPE.SELL, stockResource.findById(2), 150, 4.10, dateFormat.parse("2017/10/20")));
 
-            clientResource.add(new Client(0, "Jane Brown", dateFormat.parse("1978/12/2"), "jane@brown.xx.com", true, "5105105105105100"));
-            clientResource.add(new Client(1, "John Smith", dateFormat.parse("1965/10/12"),  "john@example.com", true, "5105105105105100"));
-            clientResource.add(new Client(2, "Gary Gecko", dateFormat.parse("1987/12/11"), "gary@gecko.com", true, "5105105105105100"));
+            clientResource.add(new Client(0, "Jane Brown", dateFormat.parse("1978/12/2"), "jane@brown.xx.com", "jane@brown.xx.com",true, "5105105105105100"));
+            clientResource.add(new Client(1, "John Smith", dateFormat.parse("1965/10/12"),  "john@example.com","jane@brown.xx.com", true, "5105105105105100"));
+            clientResource.add(new Client(2, "Gary Gecko", dateFormat.parse("1987/12/11"), "gary@gecko.com", "jane@brown.xx.com",true, "5105105105105100"));
 
             portfolioService.processTransaction(clientResource.findById(0), transactionResource.findById(0));
             portfolioService.processTransaction(clientResource.findById(0), transactionResource.findById(1));

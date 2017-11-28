@@ -1,7 +1,10 @@
 package com.readlearncode.model;
 
 import javax.faces.annotation.FacesConfig;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.util.Date;
 import java.util.Objects;
 
@@ -28,9 +31,12 @@ public class Transaction {
     @NotNull
     private Stock stock;
 
+    @Positive
     @NotNull
     private Integer quantity;
 
+    @Digits(integer = 10, fraction = 2)
+    @DecimalMin(value = "0", inclusive = false)
     @NotNull
     private Double priceLimit;
 
