@@ -35,4 +35,13 @@ public class StockTest {
         assertThat(violations.size()).isEqualTo(1);
     }
 
+    @Test
+    public void givenStockPOJO_whenCodeTooShort_shouldNotValidate()   {
+
+    }
+
+    @Test
+    public void givenStockPOJO_whenCodeTooLong_shouldNotValidate()   {
+
+    }
 }

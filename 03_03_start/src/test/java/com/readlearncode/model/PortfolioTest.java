@@ -23,7 +23,6 @@ public class PortfolioTest {
     private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
     private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 
-
     @Test
     public void givenPortfolioPOJO_whenDataInvalid_shouldNotValidate() throws ParseException {
         Portfolio portfolio = new Portfolio(null, null, null);

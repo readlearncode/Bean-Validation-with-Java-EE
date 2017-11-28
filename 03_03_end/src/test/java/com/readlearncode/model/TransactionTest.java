@@ -49,4 +49,30 @@ public class TransactionTest {
         assertThat(violations.size()).isEqualTo(0);
     }
 
+    @Test
+    public void givenTransactionPOJO_whenDataInvalid_shouldNotValidate() {
+
+    }
+
+    @Test
+    public void givenTransactionPOJO_whenPriceHasLongFraction_shouldNotValidate() {
+
+    }
+
+    @Test
+    public void givenTransactionPOJO_whenPriceHasLongIntegral_shouldNotValidate() {
+
+    }
+
+    @Test
+    public void givenTransactionPOJO_whenPriceIsZero_shouldNotValidate() {
+
+    }
+
+    @Test
+    public void givenTransactionPOJO_whenPriceIsNegative_shouldNotValidate() {
+
+
+    }
+
 }
