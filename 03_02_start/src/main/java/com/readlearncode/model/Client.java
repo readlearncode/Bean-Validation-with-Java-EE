@@ -2,6 +2,7 @@ package com.readlearncode.model;
 
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Objects;
 
@@ -13,10 +14,13 @@ public class Client {
 
     private Integer id;
 
+    @NotNull
     private String name;
 
+    @NotNull
     private String email;
 
+    @NotNull
     private Date dob; // Date Of Birth
 
     private Boolean acceptTOS; // Have the Terms Of Service been accepted
