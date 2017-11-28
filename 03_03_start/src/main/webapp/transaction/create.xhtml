@@ -1,0 +1,123 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="/resources/scaffold/pageTemplate.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value='#{transactionBean.clientId}'/>
+        <f:viewParam name="id" value='#{transactionBean.id}'/>
+        <f:event type="preRenderView" listener='#{transactionBean.retrieve}'/>
+    </f:metadata>
+
+    <ui:param name="pageTitle" value="Create Transaction"/>
+
+    <ui:define name="header">
+        Transaction
+    </ui:define>
+
+    <ui:define name="subheader">
+        <c:choose>
+            <c:when test='#{!empty transactionBean.id}'>
+                Edit existing Transaction
+            </c:when>
+            <c:otherwise>
+                Create a new Transaction
+            </c:otherwise>
+        </c:choose>
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <h:form id="create">
+            <h:messages globalOnly="true" styleClass="error"/>
+
+            <h:panelGrid columnClasses="label,component,required" columns="3">
+
+                <h:outputLabel for="transactionBeanClient" value="Client:"/>
+                <h:panelGroup>
+                    <h:selectOneMenu id="transactionBeanClient" value="#{transactionBean.client}"
+                                     converter="#{clientConverter}">
+                        <f:selectItems value="#{clientBean.all}" var="clientId" itemValue="#{client.id}"
+                                       itemLabel="#{client.name}"/>
+                    </h:selectOneMenu>
+                </h:panelGroup>
+                <h:outputText/>
+
+                <h:outputLabel for="transactionBeanType" value="Type:"/>
+                <h:panelGroup>
+                    <h:selectOneMenu id="transactionBeanType" value="#{transactionBean.transaction.type}">
+                        <f:selectItems value="#{transactionBean.allTypes}"/>
+                    </h:selectOneMenu>
+                    <h:message for="transactionBeanType" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+
+
+                <h:outputLabel for="transactionBeanStock" value="Stock:"/>
+                <h:panelGroup>
+
+                    <h:selectOneMenu id="transactionBeanStock" value="#{transactionBean.transaction.stock}"
+                                     converter="#{stockConverter}">
+                        <f:selectItems value="#{stockBean.all}" var="stock" itemValue="#{stock.id}"
+                                       itemLabel="#{stock.name}"/>
+                    </h:selectOneMenu>
+
+                </h:panelGroup>
+                <h:outputText/>
+
+
+                <h:outputLabel for="transactionBeanQuantity" value="Quantity:"/>
+                <h:panelGroup>
+                    <h:inputText id="transactionBeanQuantity" value="#{transactionBean.transaction.quantity}"/>
+                    <h:message for="transactionBeanQuantity" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+
+
+
+                <h:outputLabel for="transactionBeanPriceLimit" value="Price Limit:"/>
+                <h:panelGroup>
+                    <h:inputText id="transactionBeanPriceLimit" value="#{transactionBean.transaction.priceLimit}"/>
+
+                    <h:message for="transactionBeanPriceLimit" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+
+
+                <h:outputLabel for="transactionBeanExerciseDate" value="Exercise Date:"/>
+                <h:panelGroup>
+                    <h:inputText id="transactionBeanExerciseDate" value="#{transactionBean.transaction.exerciseDate}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:inputText>
+                    <h:message for="transactionBeanExerciseDate" styleClass="error"/>
+                </h:panelGroup>
+                <h:outputText/>
+
+
+            </h:panelGrid>
+            <div class="buttons">
+                <h:commandLink value="Save" action='#{transactionBean.update}' styleClass="btn btn-primary">
+                    <f:param name="id" value="#{transactionBean.clientId}"/>
+                </h:commandLink>
+                <c:choose>
+                    <c:when test='#{!empty transactionBean.id}'>
+                        <h:link value="Cancel" outcome="view" styleClass="btn btn-primary">
+                            <f:param name="id" value='#{transactionBean.id}'/>
+                        </h:link>
+                        <h:commandLink value="Delete" action='#{transactionBean.delete}' styleClass="btn btn-primary"/>
+                    </c:when>
+                    <c:otherwise>
+                        <h:link value="Cancel" outcome="search" styleClass="btn btn-primary"/>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+            <f:validateWholeBean value='#{transactionBean}' />
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
