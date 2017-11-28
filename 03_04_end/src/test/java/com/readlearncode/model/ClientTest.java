@@ -38,7 +38,7 @@ public class ClientTest {
     }
 
     @Test
-    public void givenClientPOJO_whenEmailDataValid_shouldValidate() {
+    public void givenClientPOJO_whenEmailDataInvalid_shouldValidate() {
         Set<ConstraintViolation<Client>> violations = validator.validateValue(Client.class, "email", "invalid_email");
         assertThat(violations.size()).isEqualTo(1);
     }
