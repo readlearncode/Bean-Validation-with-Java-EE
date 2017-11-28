@@ -17,8 +17,6 @@ public class Client {
 
     private String email;
 
-    private String confirmEmail;
-
     private Date dob; // Date Of Birth
 
     private Boolean acceptTOS; // Have the Terms Of Service been accepted
@@ -33,7 +31,6 @@ public class Client {
         this.name = name;
         this.dob = dob;
         this.email = email;
-        this.confirmEmail = confirmEmail;
         this.acceptTOS = acceptTOS;
         this.creditCardNumber = creditCardNumber;
     }
@@ -70,14 +67,6 @@ public class Client {
         this.email = email;
     }
 
-    public String getConfirmEmail() {
-        return confirmEmail;
-    }
-
-    public void setConfirmEmail(String confirmEmail) {
-        this.confirmEmail = confirmEmail;
-    }
-
     public Boolean getAcceptTOS() {
         return acceptTOS;
     }
@@ -107,7 +96,6 @@ public class Client {
         return Objects.equals(id, client.id) &&
                 Objects.equals(name, client.name) &&
                 Objects.equals(email, client.email) &&
-                Objects.equals(confirmEmail, client.confirmEmail) &&
                 Objects.equals(dob, client.dob) &&
                 Objects.equals(acceptTOS, client.acceptTOS) &&
                 Objects.equals(creditCardNumber, client.creditCardNumber);
@@ -115,6 +103,6 @@ public class Client {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, confirmEmail, dob, acceptTOS, creditCardNumber);
+        return Objects.hash(id, name, email, dob, acceptTOS, creditCardNumber);
     }
 }
