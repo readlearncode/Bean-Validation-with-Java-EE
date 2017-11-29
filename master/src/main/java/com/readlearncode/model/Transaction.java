@@ -1,7 +1,7 @@
 package com.readlearncode.model;
 
 import com.readlearncode.model.constraints.MaxDealSize;
-import com.readlearncode.model.constraints.Price;
+import com.readlearncode.model.contraints.PriceLimit;
 
 import javax.faces.annotation.FacesConfig;
 import javax.validation.constraints.FutureOrPresent;
@@ -41,8 +41,8 @@ public class Transaction {
     //    @NotNull
 //    @Digits(integer = 10, fraction = 2)
 //    @DecimalMin(value = "0", inclusive = false)
-//    @PriceLimit
-    @Price(min = 0, max = 100)
+    @PriceLimit
+//    @Price(min = 0, max = 100)
     private Double priceLimit;
 
     @NotNull(message = "Ensure that the exercise date has been entered")

@@ -22,6 +22,7 @@ public class TransactionTest {
 
     private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
     private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+
     @Test
     public void givenTransactionPOJO_whenDataNull_shouldNotValidate() throws ParseException {
         Transaction transaction = new Transaction();
@@ -96,7 +97,7 @@ public class TransactionTest {
     @Test
     public void givenTransactionPOJO_whenPriceMaxSet_shouldNotValidate() {
         Transaction transaction = new Transaction();
-        transaction.setPriceLimit(150.0);
+        transaction.setPriceLimit(150000000000.0);
         Set<ConstraintViolation<Transaction>> violations = validator.validateProperty(transaction, "priceLimit");
         assertThat(violations.size()).isEqualTo(1);
     }
