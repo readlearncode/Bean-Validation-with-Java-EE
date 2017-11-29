@@ -4,10 +4,7 @@ import org.hibernate.validator.constraints.CreditCardNumber;
 
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
+import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.Objects;
 
@@ -19,7 +16,7 @@ public class Client {
 
     private Integer id;
 
-    @NotNull
+    @NotBlank
     private String name;
 
     @Email
