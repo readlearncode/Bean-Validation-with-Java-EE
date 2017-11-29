@@ -38,7 +38,15 @@ public class ClientTest {
     }
 
     @Test
-    public void givenClientPOJO_whenEmailDataInvalid_shouldValidate() {
+    public void givenClientPOJO_whenEmailDataInvalid_shouldNotValidate()  {
+        Client client = new Client();
+        client.setEmail("this_is_not_a_valid_email_address");
+        Set<ConstraintViolation<Client>> violations = validator.validateProperty(client, "email");
+        assertThat(violations.size()).isEqualTo(1);
+    }
+
+    @Test
+    public void givenClientPOJO_whenEmailDataValid_shouldValidate() {
         Set<ConstraintViolation<Client>> violations = validator.validateValue(Client.class, "email", "invalid_email");
         assertThat(violations.size()).isEqualTo(1);
     }

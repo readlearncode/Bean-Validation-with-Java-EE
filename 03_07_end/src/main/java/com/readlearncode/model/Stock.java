@@ -11,10 +11,10 @@ public class Stock {
 
 	private Integer id;
 
-	@Pattern(regexp = "^[A-Z]*$")
 	@NotNull
 	private String name;
 
+	@Pattern(regexp = "^[A-Z]*$")
 	@Size(min = 3, max = 3)
 	@NotNull
 	private String code;
