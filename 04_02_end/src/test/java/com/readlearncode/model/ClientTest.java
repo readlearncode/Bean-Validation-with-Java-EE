@@ -84,7 +84,7 @@ public class ClientTest {
 
     @Test
     public void givenClientPOJO_whenCreditCardNumberInvalid_shouldValidate() throws ParseException {
-        Set<ConstraintViolation<Client>> violations = validator.validateValue(Client.class, "creditCardNumber", null);
+        Set<ConstraintViolation<Client>> violations = validator.validateValue(Client.class, "creditCardNumber", "1234123412341234");
         assertThat(violations.size()).isEqualTo(1);
     }
 
@@ -102,7 +102,7 @@ public class ClientTest {
 
     @Test
     public void givenClientPOJO_whenCreditCardNumberInvalid_shouldNotValidate()  {
-        Set<ConstraintViolation<Client>> violations = validator.validateValue(Client.class, "creditCardNumber", "1234123412341234");
+        Set<ConstraintViolation<Client>> violations = validator.validateValue(Client.class, "creditCardNumber", null);
         assertThat(violations.size()).isEqualTo(1);
     }
 
