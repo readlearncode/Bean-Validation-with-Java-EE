@@ -1,0 +1,5 @@
+Credit Card Type	Credit Card Number
+Discover	        6011111111111117
+JCB	                3530111333300000
+MasterCard	        5555555555554444
+Visa	            4111111111111111
