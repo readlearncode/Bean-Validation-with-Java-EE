@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{clientBean.id}'/>
+		<f:viewParam name="page" value='#{clientBean.page}'/>
+		<f:event type="preRenderView" listener='#{clientBean.paginate}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Clients"/>
+
+	<ui:define name="header">
+		Clients
+	</ui:define>
+
+	<ui:define name="subheader">
+		List of clients
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form>
+			
+			<h:dataTable id="clientBeanPageItems" styleClass="data-table" value="#{clientBean.pageItems}" var="_item">
+				<h:column>
+				<f:facet name="header">
+					<h:outputText value="Name"/>
+				</f:facet>
+				<h:link outcome="/client/view">
+					<f:param name="id" value="#{_item.id}"/>
+					<h:outputText id="_itemName" value="#{_item.name}"/>
+				</h:link>
+			</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Date of Birth"/>
+					</f:facet>
+					<h:link outcome="/client/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="_itemDob" value="#{_item.dob}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</h:link>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Email"/>
+					</f:facet>
+					<h:link outcome="/client/view">
+						<f:param name="id" value="#{_item.id}"/>
+						<h:outputText id="_itemEmail" value="#{_item.email}"/>
+					</h:link>
+				</h:column>
+			</h:dataTable>
+			<ui:include src="/resources/scaffold/paginator.xhtml">
+				<ui:param name="paginatorBean" value='#{clientBean}'/>
+			</ui:include>
+
+            <f:validateBean disabled="true">
+                <h:panelGroup styleClass="">
+                    <h:panelGroup styleClass="buttons">
+                        <h:commandLink value="Create New" action='#{clientBean.create}' styleClass="btn btn-primary"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </f:validateBean>
+
+		</h:form>
+			
+	</ui:define>
+
+</ui:composition>

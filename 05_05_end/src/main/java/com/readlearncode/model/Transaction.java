@@ -1,10 +1,8 @@
 package com.readlearncode.model;
 
-import com.readlearncode.model.constraints.MaxDealSize;
-import com.readlearncode.model.constraints.Price;
+import com.readlearncode.model.contraints.Price;
 
 import javax.faces.annotation.FacesConfig;
-import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.util.Date;
@@ -19,7 +17,6 @@ import static javax.faces.annotation.FacesConfig.Version.JSF_2_3;
  * @version 1.0
  */
 @FacesConfig(version = JSF_2_3)
-@MaxDealSize(size = 10_000, type = Transaction.TYPE.BUY)
 public class Transaction {
 
     public enum TYPE {
@@ -28,25 +25,20 @@ public class Transaction {
 
     private Integer id;
 
-    @NotNull(message = "You must enter a transaction type")
+    @NotNull
     private TYPE type;
 
-    @NotNull(message = "You must select a Stock")
+    @NotNull
     private Stock stock;
 
-    @Positive(message = "You must enter positive quantity")
-    @NotNull(message = "You must enter a quantity")
+    @Positive
+    @NotNull
     private Integer quantity;
 
-    //    @NotNull
-//    @Digits(integer = 10, fraction = 2)
-//    @DecimalMin(value = "0", inclusive = false)
-//    @PriceLimit
     @Price(min = 0, max = 100)
     private Double priceLimit;
 
-    @NotNull(message = "Ensure that the exercise date has been entered")
-    @FutureOrPresent
+    @NotNull
     private Date exerciseDate;
 
     public Transaction() {

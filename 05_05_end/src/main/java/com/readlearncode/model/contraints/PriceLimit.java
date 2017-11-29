@@ -1,4 +1,4 @@
-package com.readlearncode.model.constraints;
+package com.readlearncode.model.contraints;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
