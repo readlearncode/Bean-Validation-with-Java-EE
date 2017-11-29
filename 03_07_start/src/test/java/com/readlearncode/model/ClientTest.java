@@ -37,4 +37,14 @@ public class ClientTest {
         assertThat(violations.size()).isEqualTo(3);
     }
 
+    @Test
+    public void givenClientPOJO_whenEmailDataInvalid_shouldNotValidate()  {
+
+    }
+
+    @Test
+    public void givenClientPOJO_whenEmailDataValid_shouldValidate() {
+
+    }
+
 }
