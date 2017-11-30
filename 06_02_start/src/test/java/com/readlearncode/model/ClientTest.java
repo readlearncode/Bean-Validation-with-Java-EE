@@ -98,13 +98,4 @@ public class ClientTest {
         assertThat(violations.size()).isEqualTo(1);
     }
 
-    @Test
-    public void givenInvalidEmail_shouldPassCustomisedValidationFailureMessage() {
-
-    }
-
-    @Test
-    public void givenDateOfBirth_shouldPassCustomisedValidationFailureMessage() throws ParseException {
-
-    }
 }

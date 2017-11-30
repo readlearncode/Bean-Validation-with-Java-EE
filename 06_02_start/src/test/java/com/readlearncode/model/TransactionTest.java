@@ -83,7 +83,7 @@ public class TransactionTest {
 
     // challenge solutions
     @Test
-    public void givenTransactionPOJO_whenQuantityNegative_shouldNotValidate()  {
+    public void givenTransactionPOJO_whenQuantityNegative_shouldNotValidate() {
         Transaction transaction = new Transaction();
         transaction.setQuantity(-1);
         Set<ConstraintViolation<Transaction>> violations = validator.validateProperty(transaction, "quantity");
@@ -91,11 +91,16 @@ public class TransactionTest {
     }
 
     @Test
-    public void givenTransactionPOJO_whenQuantityPositive_shouldValidate()  {
+    public void givenTransactionPOJO_whenQuantityPositive_shouldValidate() {
         Transaction transaction = new Transaction();
         transaction.setQuantity(10);
         Set<ConstraintViolation<Transaction>> violations = validator.validateProperty(transaction, "quantity");
         assertThat(violations.size()).isEqualTo(0);
+    }
+
+    @Test
+    public void givenDateInThePast_shouldPassCustomisedValidationFailureMessage() throws ParseException {
+
     }
 
 }

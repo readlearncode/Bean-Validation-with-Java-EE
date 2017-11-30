@@ -99,19 +99,19 @@ public class TransactionTest {
     }
 
     @Test
-    public void givenDateInThePast_shouldPassCustomisedValidationFailureMessage() throws ParseException {
-        Set<ConstraintViolation<Transaction>> violations = validator.validateValue(Transaction.class, "exerciseDate", dateFormat.parse("1900/01/01"));
-        assertThat(violations.size()).isNotZero();
-        assertThat(violations.iterator().next().getMessage())
-                .isEqualTo("The date " + dateFormat.parse("1900/01/01") + " is invalid. It must be current or future");
-    }
-
-    @Test
     public void givenPriceNegative_shouldPassCustomisedValidationFailureMessage() {
         Set<ConstraintViolation<Transaction>> violations = validator.validateValue(Transaction.class, "priceLimit", -500d);
         assertThat(violations.size()).isNotZero();
         assertThat(violations.iterator().next().getMessage())
                 .isEqualTo("Please enter a valid price more than 0 and less than 100");
+    }
+
+    @Test
+    public void givenDateInThePast_shouldPassCustomisedValidationFailureMessage() throws ParseException {
+        Set<ConstraintViolation<Transaction>> violations = validator.validateValue(Transaction.class, "exerciseDate", dateFormat.parse("1900/01/01"));
+        assertThat(violations.size()).isNotZero();
+        assertThat(violations.iterator().next().getMessage())
+                .isEqualTo("The date " + dateFormat.parse("1900/01/01") + " is invalid. It must be current or future");
     }
 
 }

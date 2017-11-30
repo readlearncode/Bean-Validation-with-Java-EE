@@ -113,12 +113,4 @@ public class ClientTest {
                 .isEqualTo("The date " + dateFormat.parse("2020/01/01") + " is in the future. Please enter your date of birth!");
     }
 
-    @Test
-    public void givenDateInThePast_shouldPassCustomisedValidationFailureMessage() throws ParseException {
-        Set<ConstraintViolation<Transaction>> violations = validator.validateValue(Transaction.class, "exerciseDate", dateFormat.parse("1900/01/01"));
-        assertThat(violations.size()).isNotZero();
-        assertThat(violations.iterator().next().getMessage())
-                .isEqualTo("The date " + dateFormat.parse("1900/01/01") + " is invalid. It must be current or future");
-    }
-
 }
