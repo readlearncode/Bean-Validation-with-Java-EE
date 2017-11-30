@@ -1,0 +1,47 @@
+http://localhost:8080/bean-validation-with-java-ee/api/transactions
+
+Produces 2 bean validations. Date and price
+{
+  "exerciseDate": "2015-12-02T00:00:00Z[UTC]",
+  "priceLimit": -99,
+  "quantity": 100000,
+  "stock": {
+    "code": "ICU",
+    "id": 2,
+    "name": "ICU Search Inc"
+  },
+  "type": "BUY"
+}
+
+{"exerciseDate":"2015-12-02T00:00:00Z[UTC]","priceLimit":99,"quantity":100000,"stock":{"code":"ICU","id":2,"name":"ICU Search Inc"},"type":"BUY"}
+
+Produces 1 bean validation. Date
+{
+  "exerciseDate": "2015-12-02T00:00:00Z[UTC]",
+  "priceLimit": 99,
+  "quantity": 100000,
+  "stock": {
+    "code": "ICU",
+    "id": 2,
+    "name": "ICU Search Inc"
+  },
+  "type": "BUY"
+}
+
+{"exerciseDate":"2015-12-02T00:00:00Z[UTC]","priceLimit":99,"quantity":100000,"stock":{"code":"ICU","id":2,"name":"ICU Search Inc"},"type":"BUY"}
+
+Produces 0 bean validation
+{
+  "exerciseDate": "2020-12-02T00:00:00Z[UTC]",
+  "priceLimit": 99,
+  "quantity": 100000,
+  "stock": {
+    "code": "ICU",
+    "id": 2,
+    "name": "ICU Search Inc"
+  },
+  "type": "BUY"
+}
+
+{"exerciseDate":"2020-12-02T00:00:00Z[UTC]","priceLimit":99,"quantity":10,"stock":{"code":"ICU","id":2,"name":"ICU Search Inc"},"type":"BUY"}
+
