@@ -12,10 +12,10 @@ import javax.validation.constraintvalidation.ValidationTarget;
  * @version 1.0
  */
 @SupportedValidationTarget(ValidationTarget.PARAMETERS)
-public class EqualEmailsParametersValidator implements ConstraintValidator<EqualEmailsParameters, Object[]> {
+public class EqualEmailParametersValidator implements ConstraintValidator<EqualEmailParameters, Object[]> {
 
     @Override
-    public void initialize(EqualEmailsParameters constraintAnnotation) {}
+    public void initialize(EqualEmailParameters constraintAnnotation) {}
 
     @Override
     public boolean isValid(Object[] value, ConstraintValidatorContext context) {
