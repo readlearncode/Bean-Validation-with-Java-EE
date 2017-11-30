@@ -1,6 +1,6 @@
 package com.readlearncode.model;
 
-import com.readlearncode.model.contraints.EqualEmailsParameters;
+import com.readlearncode.model.contraints.EqualEmailParameters;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
 import javax.faces.annotation.FacesConfig;
@@ -42,7 +42,7 @@ public class Client {
     public Client() {
     }
 
-    @EqualEmailsParameters
+    @EqualEmailParameters
     public Client(Integer id, String name, Date dob, String email, String confirmEmail, Boolean acceptTOS, String creditCardNumber) {
         this.id = id;
         this.name = name;

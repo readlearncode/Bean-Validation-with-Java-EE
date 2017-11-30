@@ -19,9 +19,9 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 @Documented
 @Constraint(validatedBy = {EqualEmailsParametersValidator.class})
-public @interface EqualEmailsParameters {
+public @interface EqualEmailParameters {
 
-    String message() default "{com.readlearncode.model.constraints.EqualEmailsParameters.message}";
+    String message() default "{com.readlearncode.model.constraints.EqualEmailParameters.message}";
 
     Class<?>[] groups() default {};
 
