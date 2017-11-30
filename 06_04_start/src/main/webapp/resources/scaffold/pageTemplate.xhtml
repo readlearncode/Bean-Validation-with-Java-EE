@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>Gecko Brokers</title>
+	<h:outputStylesheet name="bootstrap.css" />
+	<h:outputStylesheet name="forge-style.css" />
+</h:head>
+
+<h:body>
+
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<h:link id="brandLink" outcome="/index.xhtml" styleClass="brand">
+                    Gecko Brokers
+				</h:link>
+				<div class="nav-collapse collapse">
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container forgecontainer">
+		<div id="navigation">
+			<h:link id="homeLink" outcome="/index.xhtml">
+				<h:graphicImage value='#{resource["logo.png"]}' width="195" alt="Gekco - greed is good!" border="0" />
+			</h:link>
+            <br/>
+			<ul>
+				<li>
+					<h:link outcome="/client/search" value="Client Adminstration"/>
+				</li>
+				<li>
+					<h:link outcome="/stock/search" value="Stock Management"/>
+				</li>
+				<li>
+					<h:link outcome="/transaction/search" value="Trade Centre"/>
+				</li>
+			</ul>
+		</div>
+
+		<div id="content">
+			<h1>
+				<ui:insert name="header" />
+			</h1>
+			<h2>
+				<ui:insert name="subheader" />
+			</h2>
+
+			<ui:insert name="main" />
+		</div>
+	</div>
+
+	<footer>
+		<div id="footer-wrapper">
+	    	<p>Powered by <a href="http://jboss.org/forge">Forge</a> | Image by <a href="https://pixabay.com/">Pixabay</a> </p>
+	    </div>
+	</footer>
+
+</h:body>
+</html>
