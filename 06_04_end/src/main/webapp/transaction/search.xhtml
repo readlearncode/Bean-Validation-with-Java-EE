@@ -1,0 +1,119 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/resources/scaffold/pageTemplate.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="page" value='#{transactionBean.page}'/>
+        <f:event type="preRenderView" listener='#{transactionBean.paginate}'/>
+    </f:metadata>
+
+    <ui:param name="pageTitle" value="Transactions"/>
+
+    <ui:define name="header">
+        Transactions
+    </ui:define>
+
+    <ui:define name="subheader">
+         List of recent transactions
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <h:form id="search">
+
+            <h:dataTable id="transactionBeanPageItems" styleClass="data-table" value="#{transactionBean.pageItems}"
+                         var="_item">
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Type"/>
+                    </f:facet>
+                    <h:link outcome="/transaction/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="_itemType" value="#{_item.type}"/>
+                    </h:link>
+                </h:column>
+
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Stock"/>
+                    </f:facet>
+                    <h:link outcome="/transaction/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="_itemStockName" value="#{_item.stock.name}"/>
+                    </h:link>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Quantity"/>
+                    </f:facet>
+                    <h:link outcome="/transaction/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="_itemQuantity" value="#{_item.quantity}" style="text-align: right">
+                            <f:convertNumber pattern="###,###,###" />
+                        </h:outputText>
+                    </h:link>
+                </h:column>
+
+                <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Price Limit"/>
+                </f:facet>
+                <h:link outcome="/transaction/view">
+                    <f:param name="id" value="#{_item.id}"/>
+                    <h:outputText id="_itemPriceLimit" value="#{_item.priceLimit}" style="text-align: right">
+                        <f:convertNumber pattern="###,###,###.00" />
+                    </h:outputText>
+                </h:link>
+            </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Value"/>
+                    </f:facet>
+                    <h:link outcome="/transaction/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="_itemValue" value="#{_item.priceLimit * _item.quantity}" style="text-align: right">
+                            <f:convertNumber pattern="###,###,###.00" />
+                        </h:outputText>
+                    </h:link>
+                </h:column>
+
+
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Exercise Date"/>
+                    </f:facet>
+                    <h:link outcome="/transaction/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputText id="_itemExerciseDate" value="#{_item.exerciseDate}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                    </h:link>
+                </h:column>
+
+
+            </h:dataTable>
+            <ui:include src="/resources/scaffold/paginator.xhtml">
+                <ui:param name="paginatorBean" value='#{transactionBean}'/>
+            </ui:include>
+
+            <f:validateBean disabled="true">
+                <h:panelGroup styleClass="">
+                    <h:panelGroup styleClass="buttons">
+                        <h:commandLink value="Create New" action='#{transactionBean.create}'
+                                       styleClass="btn btn-primary"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </f:validateBean>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
