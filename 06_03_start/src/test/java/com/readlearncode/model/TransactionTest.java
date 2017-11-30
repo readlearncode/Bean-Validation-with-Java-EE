@@ -98,4 +98,9 @@ public class TransactionTest {
         assertThat(violations.size()).isEqualTo(0);
     }
 
+    @Test
+    public void givenDateInThePast_shouldPassCustomisedValidationFailureMessage() throws ParseException {
+
+    }
+
 }
