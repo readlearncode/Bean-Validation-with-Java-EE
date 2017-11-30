@@ -1,5 +1,6 @@
 package com.readlearncode.model;
 
+import com.readlearncode.model.contraints.EqualEmailsParameters;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
 import javax.faces.annotation.FacesConfig;
@@ -23,6 +24,10 @@ public class Client {
     @NotNull(message = "You must enter an email")
     private String email;
 
+    @Email(message = "You have entered an invalid email")
+    @NotNull(message = "You must enter an email")
+    private String confirmEmail;
+
     @Past(message = "The date ${validatedValue} is in the future. Please enter your date of birth!")
     @NotNull(message = "You must enter a date")
     private Date dob; // Date Of Birth
@@ -37,11 +42,13 @@ public class Client {
     public Client() {
     }
 
-    public Client(Integer id, String name, Date dob, String email, Boolean acceptTOS, String creditCardNumber) {
+    @EqualEmailsParameters
+    public Client(Integer id, String name, Date dob, String email, String confirmEmail, Boolean acceptTOS, String creditCardNumber) {
         this.id = id;
         this.name = name;
         this.dob = dob;
         this.email = email;
+        this.confirmEmail = confirmEmail;
         this.acceptTOS = acceptTOS;
         this.creditCardNumber = creditCardNumber;
     }
@@ -78,6 +85,14 @@ public class Client {
         this.email = email;
     }
 
+    public String getConfirmEmail() {
+        return confirmEmail;
+    }
+
+    public void setConfirmEmail(String confirmEmail) {
+        this.confirmEmail = confirmEmail;
+    }
+
     public Boolean getAcceptTOS() {
         return acceptTOS;
     }
@@ -96,7 +111,15 @@ public class Client {
 
     @Override
     public String toString() {
-        return name + " (" + id + ")";
+        return "Client{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", confirmEmail='" + confirmEmail + '\'' +
+                ", dob=" + dob +
+                ", acceptTOS=" + acceptTOS +
+                ", creditCardNumber='" + creditCardNumber + '\'' +
+                '}';
     }
 
     @Override
@@ -107,6 +130,7 @@ public class Client {
         return Objects.equals(id, client.id) &&
                 Objects.equals(name, client.name) &&
                 Objects.equals(email, client.email) &&
+                Objects.equals(confirmEmail, client.confirmEmail) &&
                 Objects.equals(dob, client.dob) &&
                 Objects.equals(acceptTOS, client.acceptTOS) &&
                 Objects.equals(creditCardNumber, client.creditCardNumber);
@@ -114,6 +138,6 @@ public class Client {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, dob, acceptTOS, creditCardNumber);
+        return Objects.hash(id, name, email, confirmEmail, dob, acceptTOS, creditCardNumber);
     }
 }
