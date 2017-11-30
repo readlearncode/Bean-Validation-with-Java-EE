@@ -1,0 +1,4 @@
+javax.validation.constraints.FutureOrPresent.message = La fecha $ {validatedValue} no es válida. Debe ser actual o futuro.
+com.readlearncode.model.constraints.Price.message = Ingrese un precio válido de más de {min} y menos de {max}.
+
+JVM parameters: -Duser.country=ES -Duser.language=es
