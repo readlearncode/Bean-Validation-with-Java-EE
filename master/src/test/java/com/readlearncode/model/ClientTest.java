@@ -121,5 +121,9 @@ public class ClientTest {
         assertThat(violations.size()).isEqualTo(1);
     }
 
+    @Test
+    public void givenDateInThePast_shouldPassCustomisedValidationFailureMessage() throws ParseException {
+
+    }
 
 }

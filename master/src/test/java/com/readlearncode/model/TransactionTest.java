@@ -127,7 +127,6 @@ public class TransactionTest {
         transaction.setType(Transaction.TYPE.BUY);
         transaction.setStock(new Stock());
         transaction.setExerciseDate(dateFormat.parse("2020/12/2"));
-
         Set<ConstraintViolation<Transaction>> violations = validator.validate(transaction);
         assertThat(violations.size()).isEqualTo(1);
     }
